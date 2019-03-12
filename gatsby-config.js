@@ -1,34 +1,43 @@
+require("dotenv").config({
+  path: `.env.${process.env.NODE_ENV}`,
+})
+
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Default Starter`,
-    description: `Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.`,
-    author: `@gatsbyjs`,
+    title: `Christian Bjelland Collection`,
+    description: ``,
   },
   plugins: [
-    `gatsby-plugin-react-helmet`,
     {
-      resolve: `gatsby-source-filesystem`,
+      resolve: `gatsby-plugin-typography`,
       options: {
-        name: `images`,
-        path: `${__dirname}/src/images`,
+        pathToConfigModule: `src/utils/typography`,
       },
     },
+    {
+      resolve: "gatsby-source-graphql",
+      options: {
+        // This type will contain the remote schema Query type
+        typeName: "AWSAppSync",
+        // This is the field under which it's accessible
+        fieldName: "cbc",
+        // URL to query from
+        url: `${process.env.AWS_APPSYNC_API_URL}`,
+        headers: {
+          "x-api-key": `${process.env.AWS_APPSYNC_API_KEY}`,
+        },
+        refetchInterval: 10,
+      },
+    },
+    `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     {
-      resolve: `gatsby-plugin-manifest`,
+      resolve: "gatsby-source-s3-image",
       options: {
-        name: `gatsby-starter-default`,
-        short_name: `starter`,
-        start_url: `/`,
-        background_color: `#663399`,
-        theme_color: `#663399`,
-        display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        bucketName: "aws-testcd908bd94cdc4951991587c78925e6c9-dev",
+        protocol: "https",
       },
     },
-    // this (optional) plugin enables Progressive Web App + Offline functionality
-    // To learn more, visit: https://gatsby.dev/offline
-    // 'gatsby-plugin-offline',
   ],
 }
