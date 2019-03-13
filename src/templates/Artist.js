@@ -2,10 +2,10 @@ import React from "react"
 import Layout from "../components/Layout"
 import _ from "lodash"
 import { graphql, Link } from "gatsby"
-// import Img from "gatsby-image"
+import Image from "../components/Image"
 
 export default ({ data }) => {
-  const { firstName, lastName, artworks } = data.cbc.getArtist
+  const { firstName, lastName, artworks } = data.artist.getArtist
   const sortedArtworks = _.reverse(
     _.sortBy(artworks.items, ["sortYear", "catalogueNumber"])
   )
@@ -24,17 +24,8 @@ export default ({ data }) => {
               <p>{date}</p>
               <h4>CBS{catalogueNumber}</h4>
               {images.items.length > 0 ? (
-                <img
-                  alt={title}
-                  src={`https://s3-${
-                    images.items[0].file.region
-                  }.amazonaws.com/${images.items[0].file.bucket}/${
-                    images.items[0].file.key
-                  }`}
-                />
-              ) : (
-                `Image missing`
-              )}
+                <Image fileKey={images.items[0].file.key} />
+              ) : null}
             </div>
           )
         )}
@@ -46,7 +37,7 @@ export default ({ data }) => {
 
 export const query = graphql`
   query($id: ID!) {
-    cbc {
+    artist: cbc {
       getArtist(id: $id) {
         lastName
         firstName

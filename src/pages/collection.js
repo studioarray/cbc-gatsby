@@ -1,8 +1,8 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-// import Img from "gatsby-image"
 import _ from "lodash"
 import Layout from "../components/Layout"
+import Image from "../components/Image"
 
 export default ({ data }) => {
   const artists = _.sortBy(data.cbc.listArtists.items, ["lastName"])
@@ -30,16 +30,7 @@ export default ({ data }) => {
               <Link to={`/artists/${slug}`}>
                 {firstName} {lastName}
               </Link>
-              {image !== null ? (
-                <img
-                  alt=""
-                  src={`https://s3-${image.region}.amazonaws.com/${
-                    image.bucket
-                  }/${image.key}`}
-                />
-              ) : (
-                "No image"
-              )}
+              {image !== null ? <Image fileKey={image.key} /> : "No image"}
             </li>
           )
         })}
@@ -47,30 +38,6 @@ export default ({ data }) => {
     </Layout>
   )
 }
-
-// export const fluidImage = graphql`
-//   fragment fluidImage on File {
-//     childImageSharp {
-//       fluid(maxWidth: 1000) {
-//         ...GatsbyImageSharpFluid
-//       }
-//     }
-//   }
-// `
-
-// export const pageQuery = graphql`
-//   query {
-//     imageOne: file(relativePath: { eq: "one.jpg" }) {
-//       ...fluidImage
-//     }
-//     imageTwo: file(relativePath: { eq: "two.jpg" }) {
-//       ...fluidImage
-//     }
-//     imageThree: file(relativePath: { eq: "three.jpg" }) {
-//       ...fluidImage
-//     }
-//   }
-// `
 
 export const query = graphql`
   query {
