@@ -7,6 +7,14 @@ import Img from "gatsby-image"
 export default ({ data }) => {
   const { title, artist, visibility, catalogueNumber } = data.artwork.getArtwork
   const { firstName, lastName } = artist
+
+  // try {
+  //   let hasEdges = data.images.edges.length > 0
+  // } catch (error) {
+  //   console.log(error)
+  //   console.log(data)
+  // }
+
   if (visibility === "hidden")
     console.error(`${catalogueNumber} should be hidden`)
   return (
@@ -15,12 +23,9 @@ export default ({ data }) => {
         {firstName} {lastName}
       </h1>
       <h2>{title}</h2>
-      {data.images.edges.length > 0
-        ? data.images.edges.map(({ node }) => (
-            <Img
-              fixed={node.childImageSharp.fixed}
-              key={node.childImageSharp.fixed.src}
-            />
+      {data.images
+        ? data.images.edges.map(({ node }, index) => (
+            <Img fixed={node.childImageSharp.fixed} key={index} />
           ))
         : null}
       <pre>{JSON.stringify(data, null, 2)}</pre>
@@ -61,8 +66,8 @@ export const query = graphql`
       edges {
         node {
           childImageSharp {
-            fixed(width: 400) {
-              src
+            fixed(width: 125, height: 125) {
+              ...GatsbyImageSharpFixed
             }
           }
         }
