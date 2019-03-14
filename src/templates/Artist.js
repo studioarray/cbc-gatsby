@@ -23,9 +23,11 @@ export default ({ data }) => {
               </h3>
               <p>{date}</p>
               <h4>CBS{catalogueNumber}</h4>
-              {images.items.length > 0 ? (
-                <Image fileKey={images.items[0].file.key} />
-              ) : null}
+              {images.items.length > 0 && (
+                <Link to={`/artworks/${slug}`}>
+                  <Image fileKey={images.items[0].file.key} />
+                </Link>
+              )}
             </div>
           )
         )}
