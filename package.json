@@ -17,8 +17,6 @@
     "gatsby-source-s3-image": "file:../gatsby-source-s3-image-0.2.112.tgz",
     "gatsby-transformer-sharp": "^2.1.17",
     "lodash": "^4.17.11",
-    "lodash.filter": "^4.6.0",
-    "lodash.sortby": "^4.7.0",
     "prop-types": "^15.7.2",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",

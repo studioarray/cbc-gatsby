@@ -1,10 +1,10 @@
 import React from "react"
 import { graphql, Link } from "gatsby"
-import sortBy from "lodash.sortby"
+import _ from "lodash"
 import Layout from "../components/Layout"
 
 export default ({ data }) => {
-  const artists = sortBy(data.cbc.listArtists.items, ["lastName"])
+  const artists = _.sortBy(data.cbc.listArtists.items, ["lastName"])
   return (
     <Layout>
       <h1>Artists</h1>
