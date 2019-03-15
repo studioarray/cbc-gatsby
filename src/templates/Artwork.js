@@ -1,17 +1,27 @@
 import React from "react"
 import Layout from "../components/Layout"
 import { graphql } from "gatsby"
-// import _ from "lodash"
+import ChangeLogoColour from "../components/ChangeLogoColour"
 import Img from "gatsby-image"
+// import _ from "lodash"
 
 export default ({ data }) => {
-  const { title, artist, visibility, catalogueNumber } = data.artwork.getArtwork
+  const {
+    title,
+    artist,
+    visibility,
+    catalogueNumber,
+    images,
+  } = data.artwork.getArtwork
   const { firstName, lastName } = artist
 
   if (visibility === "hidden")
     console.error(`${catalogueNumber} should be hidden`)
   return (
     <Layout>
+      {images.items.length > 0 && (
+        <ChangeLogoColour newColour={images.items[0].colour} />
+      )}
       <h1>
         {firstName} {lastName}
       </h1>

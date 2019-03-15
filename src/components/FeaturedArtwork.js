@@ -1,14 +1,15 @@
 import React from "react"
 import Image from "./Image"
+import ChangeLogoColour from "./ChangeLogoColour"
 import { Link } from "gatsby"
 
 const FeaturedArtwork = props => {
   const { title, artist, date, images, slug } = props
   const { file, colour } = images.items[0]
   const { firstName, lastName } = artist
-  console.log(colour)
   return (
     <section>
+      <ChangeLogoColour newColour={colour} />
       <div>
         <Link to={`/artworks/${slug}`}>
           <Image fileKey={file.key} />

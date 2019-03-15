@@ -1,12 +1,15 @@
 import React from "react"
 import Menu from "./Menu"
+import Logo from "./Logo"
 
-export default props => (
-  <div>
+export default props => {
+  return (
     <div>
-      <h1>CBC Logo</h1>
-      <Menu />
+      <div>
+        <Logo />
+        <Menu />
+      </div>
+      {props.children}
     </div>
-    {props.children}
-  </div>
-)
+  )
+}

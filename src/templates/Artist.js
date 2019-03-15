@@ -3,6 +3,7 @@ import Layout from "../components/Layout"
 import _ from "lodash"
 import { graphql, Link } from "gatsby"
 import Image from "../components/Image"
+import ChangeLogoColour from "../components/ChangeLogoColour"
 
 export default ({ data }) => {
   const { firstName, lastName, artworks } = data.artist.getArtist
@@ -11,6 +12,7 @@ export default ({ data }) => {
   )
   return (
     <Layout>
+      <ChangeLogoColour newColour="0,0,0" />
       <h2>
         {firstName} {lastName}
       </h2>

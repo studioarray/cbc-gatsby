@@ -3,11 +3,13 @@ import { graphql, Link } from "gatsby"
 import _ from "lodash"
 import Layout from "../components/Layout"
 import Image from "../components/Image"
+import ChangeLogoColour from "../components/ChangeLogoColour"
 
 export default ({ data }) => {
   const artists = _.sortBy(data.cbc.listArtists.items, ["lastName"])
   return (
     <Layout>
+      <ChangeLogoColour newColour="0,0,0" />
       <h1>Collection</h1>
       <ul>
         {artists.map(({ firstName, lastName, slug, id, artworks }) => {
