@@ -32,6 +32,7 @@ module.exports = {
     `gatsby-plugin-react-helmet`,
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
+    `gatsby-plugin-react-svg`,
     {
       resolve: "gatsby-source-s3-image",
       options: {

@@ -1,11 +1,12 @@
 import React from "react"
 import { useStateValue } from "../utils/state"
+import CBCLogo from "../images/logo/cbc.svg"
 
 const Logo = () => {
   const [{ logoColour }] = useStateValue()
   return (
     <>
-      <h1>CBC Logo</h1>
+      <CBCLogo />
       <h2>{logoColour}</h2>
     </>
   )
