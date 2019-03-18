@@ -5,7 +5,6 @@ import FeaturedArtworkSelector from "../components/FeaturedArtworkSelector"
 const IndexPage = () => {
   return (
     <Layout>
-      <h1>Home page</h1>
       <FeaturedArtworkSelector />
     </Layout>
   )

@@ -1,16 +1,17 @@
 import React from "react"
-import { graphql, Link } from "gatsby"
 import _ from "lodash"
 import Layout from "../components/Layout"
 import Image from "../components/Image"
 import ChangeLogoColour from "../components/ChangeLogoColour"
+import { graphql, Link } from "gatsby"
+import { Headline } from "../components/Styled"
 
 export default ({ data }) => {
   const artists = _.sortBy(data.cbc.listArtists.items, ["lastName"])
   return (
     <Layout>
       <ChangeLogoColour newColour="0,0,0" />
-      <h1>Collection</h1>
+      <Headline>Collection</Headline>
       <ul>
         {artists.map(({ firstName, lastName, slug, id, artworks }) => {
           // Filter out artworks with missing images

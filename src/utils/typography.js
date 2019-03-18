@@ -2,7 +2,7 @@ import Typography from "typography"
 
 const typography = new Typography({
   title: "CBC Type Theme",
-  baseFontSize: "16px",
+  baseFontSize: "10px",
   baseLineHeight: 1.618,
   googleFonts: [
     {
