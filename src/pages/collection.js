@@ -4,7 +4,14 @@ import Layout from "../components/Layout"
 import Image from "../components/Image"
 import ChangeLogoColour from "../components/ChangeLogoColour"
 import { graphql, Link } from "gatsby"
-import { Headline } from "../components/Styled"
+import {
+  Headline,
+  BoldLink,
+  CollectionList,
+  CollectionListItem,
+  CollectionName,
+  CollectionImage,
+} from "../components/Styled"
 
 export default ({ data }) => {
   const artists = _.sortBy(data.cbc.listArtists.items, ["lastName"])
@@ -12,7 +19,7 @@ export default ({ data }) => {
     <Layout>
       <ChangeLogoColour newColour="0,0,0" />
       <Headline>Collection</Headline>
-      <ul>
+      <CollectionList>
         {artists.map(({ firstName, lastName, slug, id, artworks }) => {
           // Filter out artworks with missing images
           const artworkWithImages = _.reject(
@@ -29,15 +36,21 @@ export default ({ data }) => {
               : null
 
           return (
-            <li key={id}>
-              <Link to={`/artists/${slug}`}>
-                {firstName} {lastName}
-              </Link>
-              {image !== null ? <Image fileKey={image.key} /> : "No image"}
-            </li>
+            <CollectionListItem key={id}>
+              <CollectionName>
+                <BoldLink to={`/artists/${slug}`}>
+                  {firstName} {lastName}
+                </BoldLink>
+              </CollectionName>
+              <CollectionImage>
+                <Link to={`/artists/${slug}`}>
+                  {image !== null ? <Image fileKey={image.key} /> : "No image"}
+                </Link>
+              </CollectionImage>
+            </CollectionListItem>
           )
         })}
-      </ul>
+      </CollectionList>
     </Layout>
   )
 }

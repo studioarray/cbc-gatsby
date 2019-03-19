@@ -153,6 +153,7 @@ export const Link = styled(GatsbyLink)`
 export const FullHeight = styled.section`
   min-height: 100vh;
   margin: 0 22px;
+  position: relative;
 `
 
 export const Main = styled.main`
@@ -162,7 +163,7 @@ export const Main = styled.main`
 export const FeaturedArtworkWrapper = styled.section`
   width: 100%;
   height: 100%;
-  min-height: 100vh;
+  min-height: calc(100vh - ${rhythm(1)});
   display: flex;
   justify-content: center;
   align-items: center;
@@ -172,6 +173,7 @@ export const FeaturedArtworkInner = styled.figure`
   margin-bottom: ${rhythm(3)};
   width: 100vmin;
   max-width: 360px;
+  min-width: 226px;
   @media (min-width: 740px) {
     margin: 0;
     .image-wrapper {
@@ -186,6 +188,7 @@ export const FeaturedArtworkInner = styled.figure`
 `
 export const Footer = styled.footer`
   width: 100%;
+  white-space: nowrap;
   line-height: ${rhythm(2)};
   margin: -${rhythm(2)} 0 ${rhythm()};
   @media (min-width: 740px) {
@@ -197,9 +200,11 @@ export const Footer = styled.footer`
     bottom: 0px;
   }
 `
+
 export const FeaturedArtworkMeta = styled.div`
   font-style: italic;
   line-height: ${rhythm(2)};
+  white-space: nowrap;
 
   @media (min-width: 740px) {
     line-height: ${rhythm(3)};
@@ -217,5 +222,65 @@ export const Headline = styled.h1`
   margin-top: 160px;
   @media (min-width: 360px) {
     margin-top: 170px;
+  }
+`
+
+export const List = styled.ul`
+  list-style: none;
+  margin: 0;
+  padding: 0;
+`
+export const BoldLink = styled(Link)`
+  font-size: 14px;
+  font-weight: bold;
+`
+
+export const CollectionList = styled(List)`
+  margin-top: ${rhythm(4)};
+  padding-bottom: ${rhythm(4)};
+  @media (min-width: 740px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 30px;
+  }
+  @media (min-width: 1100px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (min-width: 2000px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+`
+
+export const CollectionListItem = styled.li`
+  display: flex;
+  margin: 0 0 ${rhythm(2)};
+  @media (min-width: 360px) {
+    flex-direction: row-reverse;
+  }
+`
+
+export const CollectionName = styled.div`
+  width: 50%;
+  @media (min-width: 360px) {
+    width: calc(50% - 11px);
+    margin-left: 11px;
+    align-self: flex-end;
+  }
+  @media (min-width: 740px) {
+    width: calc(50% - 15px);
+    margin-left: 15px;
+  }
+`
+
+export const CollectionImage = styled.div`
+  width: 50%;
+  @media (min-width: 360px) {
+    width: calc(50% - 11px);
+    margin-right: 11px;
+    align-self: flex-end;
+  }
+  @media (min-width: 740px) {
+    width: calc(50% - 15px);
+    margin-right: 15px;
   }
 `
