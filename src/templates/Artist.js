@@ -4,6 +4,15 @@ import _ from "lodash"
 import { graphql, Link } from "gatsby"
 import Image from "../components/Image"
 import ChangeLogoColour from "../components/ChangeLogoColour"
+import {
+  Headline,
+  CollectionList,
+  CollectionListItem,
+  CollectionName,
+  CollectionImage,
+  BoldLink,
+  Meta,
+} from "../components/Styled"
 
 export default ({ data }) => {
   const { firstName, lastName, artworks } = data.artist.getArtist
@@ -13,28 +22,29 @@ export default ({ data }) => {
   return (
     <Layout>
       <ChangeLogoColour newColour="0,0,0" />
-      <h2>
+
+      <Headline>
         {firstName} {lastName}
-      </h2>
-      <div>
+      </Headline>
+      <CollectionList>
         {sortedArtworks.map(
           ({ title, date, id, catalogueNumber, images, slug }) => (
-            <div key={id}>
-              <h3>
-                <Link to={`/artworks/${slug}`}>{title}</Link>
-              </h3>
-              <p>{date}</p>
-              <h4>CBS{catalogueNumber}</h4>
-              {images.items.length > 0 && (
-                <Link to={`/artworks/${slug}`}>
-                  <Image fileKey={images.items[0].file.key} />
-                </Link>
-              )}
-            </div>
+            <CollectionListItem key={id}>
+              <CollectionName>
+                <BoldLink to={`/artworks/${slug}`}>{title}</BoldLink>
+                <Meta>{date}</Meta>
+              </CollectionName>
+              <CollectionImage>
+                {images.items.length > 0 && (
+                  <Link to={`/artworks/${slug}`}>
+                    <Image fileKey={images.items[0].file.key} />
+                  </Link>
+                )}
+              </CollectionImage>
+            </CollectionListItem>
           )
         )}
-      </div>
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      </CollectionList>
     </Layout>
   )
 }

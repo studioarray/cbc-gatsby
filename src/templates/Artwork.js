@@ -3,7 +3,14 @@ import Layout from "../components/Layout"
 import { graphql } from "gatsby"
 import ChangeLogoColour from "../components/ChangeLogoColour"
 import Img from "gatsby-image"
-// import _ from "lodash"
+import {
+  Headline,
+  Meta,
+  ArtworkWrapper,
+  Link,
+  ArtworkImage,
+  ArtworkMeta,
+} from "../components/Styled"
 
 export default ({ data }) => {
   const {
@@ -12,6 +19,9 @@ export default ({ data }) => {
     visibility,
     catalogueNumber,
     images,
+    date,
+    measurements,
+    technique,
   } = data.artwork.getArtwork
   const { firstName, lastName } = artist
 
@@ -22,16 +32,31 @@ export default ({ data }) => {
       {images.items.length > 0 && (
         <ChangeLogoColour newColour={images.items[0].colour} />
       )}
-      <h1>
-        {firstName} {lastName}
-      </h1>
-      <h2>{title}</h2>
-      {data.images
-        ? data.images.edges.map(({ node }, index) => (
-            <Img fluid={node.childImageSharp.fluid} key={index} />
-          ))
-        : null}
-      <pre>{JSON.stringify(data, null, 2)}</pre>
+      <Headline>
+        <Link to={`/artists/${artist.slug}`}>
+          {firstName} {lastName}
+        </Link>
+      </Headline>
+      <ArtworkWrapper>
+        <ArtworkImage>
+          {data.images &&
+            data.images.edges.map(({ node }, index) => (
+              <Img fluid={node.childImageSharp.fluid} key={index} />
+            ))}
+        </ArtworkImage>
+        <ArtworkMeta>
+          <Meta bold large>
+            {title}
+          </Meta>
+          <Meta large collapse>
+            {date}
+          </Meta>
+          <Meta large>
+            {technique}, {measurements.replace(/x/gi, "×")}
+          </Meta>
+          <Meta uppercase>CBS {catalogueNumber}</Meta>
+        </ArtworkMeta>
+      </ArtworkWrapper>
     </Layout>
   )
 }
@@ -44,6 +69,9 @@ export const query = graphql`
         slug
         title
         visibility
+        date
+        measurements
+        technique
         images {
           items {
             index

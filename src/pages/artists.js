@@ -2,8 +2,9 @@ import React from "react"
 import _ from "lodash"
 import Layout from "../components/Layout"
 import ChangeLogoColour from "../components/ChangeLogoColour"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import { Headline } from "../components/Styled"
+import ArtistsAlphabetic from "../components/ArtistsAlphabetic"
 
 export default ({ data }) => {
   const artists = _.sortBy(data.cbc.listArtists.items, ["lastName"])
@@ -11,15 +12,7 @@ export default ({ data }) => {
     <Layout>
       <ChangeLogoColour newColour="0,0,0" />
       <Headline>Artists</Headline>
-      <ul>
-        {artists.map(({ firstName, lastName, slug, id }) => (
-          <li key={id}>
-            <Link to={`/artists/${slug}`}>
-              {firstName} {lastName}
-            </Link>
-          </li>
-        ))}
-      </ul>
+      <ArtistsAlphabetic artists={artists} />
     </Layout>
   )
 }
