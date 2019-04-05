@@ -26,7 +26,10 @@ const FeaturedArtwork = props => {
             {firstName} {lastName}
           </Link>
           ,{` `}
-          <Link to={`/artworks/${slug}`}>{title}</Link>, {date}
+          <Link to={`/artworks/${slug}`} artworktitle="true">
+            {title}
+          </Link>
+          , {date.replace(/-/gi, "—")}
         </FeaturedArtworkMeta>
       </FeaturedArtworkInner>
     </FeaturedArtworkWrapper>

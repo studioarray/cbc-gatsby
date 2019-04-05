@@ -9,9 +9,11 @@ module.exports = {
   },
   plugins: [
     {
-      resolve: `gatsby-plugin-typography`,
+      resolve: `gatsby-plugin-web-font-loader`,
       options: {
-        pathToConfigModule: `src/utils/typography`,
+        google: {
+          families: ["Lato:400,400i,700,700i"],
+        },
       },
     },
     {
@@ -33,7 +35,12 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-svg`,
-    `gatsby-plugin-styled-components`,
+    {
+      resolve: "gatsby-plugin-styled-components",
+      options: {
+        minify: process.env.NODE_ENV !== "production",
+      },
+    },
     {
       resolve: "gatsby-source-s3-image",
       options: {

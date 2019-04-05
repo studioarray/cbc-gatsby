@@ -5,8 +5,8 @@ import { LogoWrapper } from "./Styled"
 import { Link } from "gatsby"
 
 const Logo = () => {
+  const [{ logoColour }] = useStateValue() || "0,0,0"
   try {
-    const [{ logoColour }] = useStateValue()
     return (
       <Link to="/">
         <LogoWrapper colour={logoColour}>

@@ -45,16 +45,15 @@ export default ({ data }) => {
             ))}
         </ArtworkImage>
         <ArtworkMeta>
-          <Meta bold large>
-            {title}
+          <Meta artworktitle="true">
+            {title.replace(/\s(\S+)$/, `${String.fromCharCode(160)}$1`)}
           </Meta>
-          <Meta large collapse>
-            {date}
+          <Meta>{date.replace(/-/gi, "—")}</Meta>
+          <Meta lineBreak>{technique}</Meta>
+          <Meta>{measurements.replace(/x/gi, "×")}</Meta>
+          <Meta uppercase small>
+            CBS {catalogueNumber}
           </Meta>
-          <Meta large>
-            {technique}, {measurements.replace(/x/gi, "×")}
-          </Meta>
-          <Meta uppercase>CBS {catalogueNumber}</Meta>
         </ArtworkMeta>
       </ArtworkWrapper>
     </Layout>

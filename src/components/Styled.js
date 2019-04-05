@@ -1,7 +1,16 @@
 // import React from "react"
 import styled, { css } from "styled-components"
-import { rhythm } from "../utils/typography"
 import { Link as GatsbyLink } from "gatsby"
+
+const settings = {
+  fontSize: {
+    small: "10px",
+    medium: "13px",
+    large: "15px",
+    xLarge: "24px",
+  },
+  spacing: "30",
+}
 
 export const LogoWrapper = styled.div`
   width: 24.53333%;
@@ -14,6 +23,9 @@ export const LogoWrapper = styled.div`
   & path {
     transition: fill 0.2s ease-in;
     fill: ${props => `rgb(${props.colour})`};
+  }
+  & svg {
+    overflow: visible;
   }
   @media (max-width: 270px) {
     right: auto;
@@ -110,8 +122,9 @@ export const Menu = styled.nav`
         : css`opacity 0.2s ease-out, transform 0.2s ease-out`};
     text-transform: uppercase;
     font-weight: bold;
-    font-size: 24px;
-    line-height: ${rhythm(3)};
+    font-size: ${settings.fontSize.xLarge};
+    letter-spacing: 0.025em;
+    line-height: 2em;
     ${({ active }) =>
       active
         ? css`
@@ -148,6 +161,17 @@ export const Link = styled(GatsbyLink)`
   &:hover {
     color: rgba(100, 100, 100, 0.8);
   }
+  ${props =>
+    props.artworktitle &&
+    css`
+      font-weight: bold;
+      font-style: italic;
+    `}
+`
+
+export const BoldLink = styled(Link)`
+  font-size: ${settings.fontSize.medium};
+  font-weight: bold;
 `
 
 export const FullHeight = styled.section`
@@ -163,14 +187,14 @@ export const Main = styled.main`
 export const FeaturedArtworkWrapper = styled.section`
   width: 100%;
   height: 100%;
-  min-height: calc(100vh - ${rhythm(1)});
+  min-height: calc(100vh - 1em);
   display: flex;
   justify-content: center;
   align-items: center;
 `
 export const FeaturedArtworkInner = styled.figure`
   margin-top: 120px;
-  margin-bottom: ${rhythm(3)};
+  margin-bottom: 1em;
   width: 100vmin;
   max-width: 360px;
   min-width: 226px;
@@ -185,33 +209,41 @@ export const FeaturedArtworkInner = styled.figure`
       transform: translate(-50%, -50%);
     }
   }
+  img {
+    object-fit: contain !important;
+  }
 `
 export const Footer = styled.footer`
   width: 100%;
+  font-size: ${settings.fontSize.small};
   white-space: nowrap;
-  line-height: ${rhythm(2)};
-  margin: -${rhythm(2)} 0 ${rhythm()};
+  line-height: 1em;
+  margin: 0;
+  position: fixed;
+  left: ${settings.spacing}px;
+  bottom: 20px;
   @media (min-width: 740px) {
-    line-height: ${rhythm(3)};
+    left: auto;
+    line-height: 1em;
     margin: 0;
     width: auto;
-    position: absolute;
-    right: 30px;
-    bottom: 0px;
+    right: ${settings.spacing}px;
   }
 `
 
 export const FeaturedArtworkMeta = styled.div`
+  font-size: ${settings.fontSize.small};
   font-style: italic;
-  line-height: ${rhythm(2)};
+  line-height: 1em;
   white-space: nowrap;
+  margin-top: 0.5em;
 
   @media (min-width: 740px) {
-    line-height: ${rhythm(3)};
+    line-height: 1em;
     width: auto;
-    position: absolute;
-    left: 30px;
-    bottom: 0px;
+    position: fixed;
+    left: ${settings.spacing}px;
+    bottom: 20px;
   }
 `
 
@@ -219,7 +251,9 @@ export const Headline = styled.h1`
   text-align: center;
   font-size: 24px;
   font-weight: bold;
+  text-transform: uppercase;
   margin-top: 160px;
+  margin-bottom: ${settings.spacing}px;
   @media (min-width: 360px) {
     margin-top: 170px;
   }
@@ -230,18 +264,13 @@ export const List = styled.ul`
   margin: 0;
   padding: 0;
 `
-export const BoldLink = styled(Link)`
-  font-size: 14px;
-  font-weight: bold;
-`
-
 export const CollectionList = styled(List)`
-  margin-top: ${rhythm(4)};
-  padding-bottom: ${rhythm(4)};
+  margin-top: 1em;
+  padding-bottom: 1em;
   @media (min-width: 740px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: 30px;
+    grid-column-gap: ${settings.spacing}px;
   }
   @media (min-width: 1100px) {
     grid-template-columns: 1fr 1fr 1fr;
@@ -253,7 +282,7 @@ export const CollectionList = styled(List)`
 
 export const CollectionListItem = styled.li`
   display: flex;
-  margin: 0 0 ${rhythm(2)};
+  margin: 0 0 ${settings.spacing}px;
   @media (min-width: 360px) {
     flex-direction: row-reverse;
   }
@@ -286,9 +315,9 @@ export const CollectionImage = styled.div`
 `
 
 export const ArtistsList = styled(List)`
-  margin-top: ${rhythm(4)};
-  padding-bottom: ${rhythm(4)};
-  font-size: 14px;
+  margin-top: ${settings.spacing * 2}px;
+  padding-bottom: 1em;
+  font-size: ${settings.fontSize.medium};
   li:not(:last-child) {
     border-bottom: 1px solid #ddd;
   }
@@ -296,7 +325,7 @@ export const ArtistsList = styled(List)`
   @media (min-width: 740px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: 30px;
+    grid-column-gap: ${settings.spacing}px;
     li:not(:last-child) {
       border-bottom: none;
     }
@@ -329,46 +358,62 @@ export const ArtistLink = styled(Link)`
   padding-bottom: 1em;
 `
 export const Meta = styled.div`
-  font-size: 11px;
-  margin-top: 0.5em;
+  font-size: ${settings.fontSize.medium};
+  line-height: 1em;
+  margin-top: 0;
+  margin-bottom: .3em;
   ${props =>
-    props.bold &&
+    props.artworktitle &&
     css`
+      font-size: ${settings.fontSize.large};
       font-weight: bold;
+      font-style: italic;
     `}
   ${props =>
-    props.large &&
+    props.small &&
     css`
-      font-size: 14px;
+      font-size: ${settings.fontSize.small};
     `}
   ${props =>
     props.uppercase &&
     css`
       text-transform: uppercase;
     `}
-    ${props =>
-      props.collapse &&
-      css`
-        margin: 0;
-      `}
+  ${props =>
+    props.lineBreak &&
+    css`
+      margin-top: 1.5em;
+    `}
+  ${props =>
+    props.lineBreakDown &&
+    css`
+      margin-bottom: 1.5em;
+    `}
 `
 
 export const ArtworkWrapper = styled.section`
-  margin-top: ${rhythm(4)};
-  padding-bottom: ${rhythm(4)};
+  margin-top: 1em;
+  padding-bottom: 1em;
   @media (min-width: 740px) {
     display: grid;
     grid-template-columns: 1fr 1fr;
-    grid-column-gap: 30px;
+    grid-column-gap: ${settings.spacing}px;
   }
 `
 
-export const ArtworkImage = styled.figure``
-export const ArtworkMeta = styled.div``
+export const ArtworkImage = styled.figure`
+  margin: 0;
+  & > div {
+    margin-bottom: ${settings.fontSize.large};
+  }
+`
+export const ArtworkMeta = styled.div`
+  margin-bottom: 2em;
+`
 
 export const AboutText = styled.div`
-  margin-top: ${rhythm(4)};
-  padding-bottom: ${rhythm(4)};
+  margin-top: 1em;
+  padding-bottom: 1em;
   font-size: 14px;
   max-width: 460px;
   position: relative;

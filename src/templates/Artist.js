@@ -10,7 +10,7 @@ import {
   CollectionListItem,
   CollectionName,
   CollectionImage,
-  BoldLink,
+  Link as TitleLink,
   Meta,
 } from "../components/Styled"
 
@@ -27,23 +27,26 @@ export default ({ data }) => {
         {firstName} {lastName}
       </Headline>
       <CollectionList>
-        {sortedArtworks.map(
-          ({ title, date, id, catalogueNumber, images, slug }) => (
-            <CollectionListItem key={id}>
-              <CollectionName>
-                <BoldLink to={`/artworks/${slug}`}>{title}</BoldLink>
-                <Meta>{date}</Meta>
-              </CollectionName>
-              <CollectionImage>
-                {images.items.length > 0 && (
-                  <Link to={`/artworks/${slug}`}>
-                    <Image fileKey={images.items[0].file.key} />
-                  </Link>
-                )}
-              </CollectionImage>
-            </CollectionListItem>
-          )
-        )}
+        {sortedArtworks.map(({ title, date, id, images, slug }) => (
+          <CollectionListItem key={id}>
+            <CollectionName>
+              <TitleLink to={`/artworks/${slug}`}>
+                <Meta artworktitle="true">
+                  {/* TODO: break this out to it's own function. Joins the last two words of the title with a non-breaking space in order to prevent typographic widows */}
+                  {title.replace(/\s(\S+)$/, `${String.fromCharCode(160)}$1`)}
+                </Meta>
+              </TitleLink>
+              <Meta>{date.replace(/-/gi, "—")}</Meta>
+            </CollectionName>
+            <CollectionImage>
+              {images.items.length > 0 && (
+                <Link to={`/artworks/${slug}`}>
+                  <Image fileKey={images.items[0].file.key} />
+                </Link>
+              )}
+            </CollectionImage>
+          </CollectionListItem>
+        ))}
       </CollectionList>
     </Layout>
   )
