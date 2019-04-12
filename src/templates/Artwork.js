@@ -3,6 +3,7 @@ import Layout from "../components/Layout"
 import { graphql } from "gatsby"
 import ChangeLogoColour from "../components/ChangeLogoColour"
 import Img from "gatsby-image"
+import ImageZoom from "../components/ImageZoom"
 import {
   Headline,
   Meta,
@@ -41,7 +42,9 @@ export default ({ data }) => {
         <ArtworkImage>
           {data.images &&
             data.images.edges.map(({ node }, index) => (
-              <Img fluid={node.childImageSharp.fluid} key={index} />
+              <ImageZoom key={index}>
+                <Img fluid={node.childImageSharp.fluid} />
+              </ImageZoom>
             ))}
         </ArtworkImage>
         <ArtworkMeta>

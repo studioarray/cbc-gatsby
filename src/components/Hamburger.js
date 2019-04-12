@@ -18,7 +18,7 @@ const HamburgerButton = styled.button`
   display: inline-block;
   cursor: pointer;
   position: fixed;
-  z-index: 2;
+  z-index: 20;
   top: 48px;
   left: 22px;
   @media (min-width: 740px) {

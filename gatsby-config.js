@@ -35,6 +35,7 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-svg`,
+    `gatsby-plugin-sass`,
     {
       resolve: "gatsby-plugin-styled-components",
       options: {

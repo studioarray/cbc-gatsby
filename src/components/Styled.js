@@ -1,6 +1,7 @@
 // import React from "react"
 import styled, { css } from "styled-components"
 import { Link as GatsbyLink } from "gatsby"
+import { Field, Form } from "formik"
 
 const settings = {
   fontSize: {
@@ -10,6 +11,10 @@ const settings = {
     xLarge: "24px",
   },
   spacing: "30",
+  colours: {
+    black: "#1d1d1b",
+    grey: "#aaa",
+  },
 }
 
 export const LogoWrapper = styled.div`
@@ -19,7 +24,7 @@ export const LogoWrapper = styled.div`
   position: fixed;
   top: 42px;
   right: 0;
-  z-index: 2;
+  z-index: 20;
   & path {
     transition: fill 0.2s ease-in;
     fill: ${props => `rgb(${props.colour})`};
@@ -39,7 +44,7 @@ export const LogoWMWrapperVertical = styled.div`
   top: 42px;
   height: 26.5vw;
   left: 50%;
-  z-index: 2;
+  z-index: 20;
   transform: translateX(-50%);
   max-width: 160px;
   min-width: 64px;
@@ -68,7 +73,7 @@ export const LogoWMWrapperHorisontal = styled.div`
   width: 40%;
   max-width: 360px;
   left: 50%;
-  z-index: 2;
+  z-index: 20;
   transform: translateX(-50%);
   svg {
     position: absolute;
@@ -85,7 +90,7 @@ export const Menu = styled.nav`
   top: 0;
   left: 0;
   bottom: 0;
-  z-index: 1;
+  z-index: 10;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -419,4 +424,98 @@ export const AboutText = styled.div`
   position: relative;
   left: 50%;
   transform: translateX(-50%);
+`
+
+// Contact page
+
+export const StyledField = styled(Field)`
+  font-family: inherit;
+  display: block;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-bottom: 2px solid ${settings.colours.black};
+  margin-bottom: 1em;
+  line-height: 2;
+  font-size: ${settings.fontSize.large};
+  ${props =>
+    props.component === "textarea" &&
+    css`
+      line-height: 1.5;
+      resize: none;
+    `}
+`
+
+export const ErrorWrapper = styled.div`
+  font-size: ${settings.fontSize.medium};
+  margin-bottom: 1em;
+  text-align: center;
+  position: absolute;
+  bottom: -2.2em;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1;
+  width: 100%;
+  & > span {
+    color: white;
+    background: ${settings.colours.grey};
+    border-radius: 3px;
+    padding: 5px 7px;
+    position: relative;
+    top: 0;
+    white-space: nowrap;
+    &::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 5px 8px 5px;
+      border-color: transparent transparent ${settings.colours.grey} transparent;
+    }
+  }
+`
+
+export const StyledForm = styled(Form)`
+  width: 100%;
+  max-width: 400px;
+  margin: 0 auto;
+`
+
+export const FormButton = styled.button`
+  font-family: inherit;
+  font-size: ${settings.fontSize.large};
+  float: right;
+  border: 0;
+  margin: 0;
+  padding: 0.4em 1.2em;
+  background: ${settings.colours.black};
+  color: white;
+  border-radius: 1.2em;
+  transition: 0.3s ease opacity;
+  &[disabled],
+  &[disabled]:hover {
+    opacity: 0.3;
+    cursor: wait;
+  }
+  &:hover {
+    opacity: 0.8;
+    cursor: pointer;
+  }
+`
+export const FieldSet = styled.fieldset`
+  position: relative;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  &[disabled] {
+    opacity: 0.3;
+  }
+  &[disabled] > *:hover {
+    cursor: wait;
+  }
 `
