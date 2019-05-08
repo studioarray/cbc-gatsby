@@ -1,7 +1,5 @@
 import React from "react"
-import Layout from "../components/Layout"
 import { graphql } from "gatsby"
-import ChangeLogoColour from "../components/ChangeLogoColour"
 import Img from "gatsby-image"
 import ImageZoom from "../components/ImageZoom"
 import {
@@ -12,27 +10,27 @@ import {
   ArtworkImage,
   ArtworkMeta,
 } from "../components/Styled"
+import { FadeWrapper } from "../components/Transitions"
+
+import { useColour } from "../utils/colourContext"
 
 export default ({ data }) => {
   const {
     title,
     artist,
-    visibility,
     catalogueNumber,
-    images,
     date,
+    images,
     measurements,
     technique,
   } = data.artwork.getArtwork
   const { firstName, lastName } = artist
 
-  if (visibility === "hidden")
-    console.error(`${catalogueNumber} should be hidden`)
+  const { setColour } = useColour()
+  setColour(images.items[0].colour)
+
   return (
-    <Layout>
-      {images.items.length > 0 && (
-        <ChangeLogoColour newColour={images.items[0].colour} />
-      )}
+    <FadeWrapper>
       <Headline>
         <Link to={`/artists/${artist.slug}`}>
           {firstName} {lastName}
@@ -59,7 +57,7 @@ export default ({ data }) => {
           </Meta>
         </ArtworkMeta>
       </ArtworkWrapper>
-    </Layout>
+    </FadeWrapper>
   )
 }
 

@@ -37,6 +37,8 @@ const FeaturedArtworkSelector = () => (
     render={data => {
       // Get a random sample from the result
       const selectedArtwork = _.sample(data.cbc.listArtworks.items)
+      console.log(data.cbc.listArtworks.items)
+      console.log(selectedArtwork)
       return <FeaturedArtwork {...selectedArtwork} />
     }}
   />

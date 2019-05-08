@@ -1,7 +1,7 @@
 import React from "react"
 import Image from "./Image"
 import ChangeLogoColour from "./ChangeLogoColour"
-import { Link } from "./Styled"
+import { Link } from "./Transitions"
 import {
   FeaturedArtworkWrapper,
   FeaturedArtworkInner,

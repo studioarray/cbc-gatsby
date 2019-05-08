@@ -1,19 +1,20 @@
 import React from "react"
 import _ from "lodash"
-import Layout from "../components/Layout"
-import ChangeLogoColour from "../components/ChangeLogoColour"
 import { graphql } from "gatsby"
 import { Headline } from "../components/Styled"
 import ArtistsAlphabetic from "../components/ArtistsAlphabetic"
+import { FadeWrapper } from "../components/Transitions"
+import { useColour } from "../utils/colourContext"
 
 export default ({ data }) => {
   const artists = _.sortBy(data.cbc.listArtists.items, ["lastName"])
+  const { setColour } = useColour()
+  setColour("0,0,0")
   return (
-    <Layout>
-      <ChangeLogoColour newColour="0,0,0" />
+    <FadeWrapper>
       <Headline>Artists</Headline>
       <ArtistsAlphabetic artists={artists} />
-    </Layout>
+    </FadeWrapper>
   )
 }
 

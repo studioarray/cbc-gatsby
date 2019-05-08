@@ -1,6 +1,6 @@
 // import React from "react"
 import styled, { css } from "styled-components"
-import { Link as GatsbyLink } from "gatsby"
+import { Link as GatsbyLink } from "./Transitions"
 import { Field, Form } from "formik"
 
 const settings = {
@@ -24,13 +24,14 @@ export const LogoWrapper = styled.div`
   position: fixed;
   top: 42px;
   right: 0;
+  padding-left: 1px; /* Scaling issue fix */
   z-index: 20;
   & path {
     transition: fill 0.2s ease-in;
     fill: ${props => `rgb(${props.colour})`};
   }
   & svg {
-    overflow: visible;
+    overflow: visible; /* Scaling issue fix */
   }
   @media (max-width: 270px) {
     right: auto;
@@ -40,7 +41,7 @@ export const LogoWrapper = styled.div`
 
 export const LogoWMWrapperVertical = styled.div`
   width: 23.46666%;
-  position: fixed;
+  position: absolute;
   top: 42px;
   height: 26.5vw;
   left: 50%;
@@ -66,7 +67,7 @@ export const LogoWMWrapperHorisontal = styled.div`
   @media (min-width: 460px) {
     display: block;
   }
-  position: fixed;
+  position: absolute;
   top: 0;
   height: 30vw;
   max-height: 180px;
@@ -140,6 +141,18 @@ export const Menu = styled.nav`
             transform: translateY(-100%);
             opacity: 0;
           `}
+    a {
+      text-decoration: none;
+      transition: color 0.25s ease-out;
+      &:link,
+      &:visited,
+      &:active {
+        color: rgba(0, 0, 0, 0.8);
+      }
+      &:hover {
+        color: rgba(100, 100, 100, 0.8);
+      }
+    }
   }
   li:nth-child(1) {
     transition-delay: 0.2s;

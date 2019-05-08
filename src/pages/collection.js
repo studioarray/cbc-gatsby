@@ -1,9 +1,7 @@
 import React from "react"
 import _ from "lodash"
-import Layout from "../components/Layout"
 import Image from "../components/Image"
-import ChangeLogoColour from "../components/ChangeLogoColour"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import {
   Headline,
   BoldLink,
@@ -12,12 +10,15 @@ import {
   CollectionName,
   CollectionImage,
 } from "../components/Styled"
+import { FadeWrapper, Link } from "../components/Transitions"
+import { useColour } from "../utils/colourContext"
 
 export default ({ data }) => {
   const artists = _.sortBy(data.cbc.listArtists.items, ["lastName"])
+  const { setColour } = useColour()
+  setColour("0,0,0")
   return (
-    <Layout>
-      <ChangeLogoColour newColour="0,0,0" />
+    <FadeWrapper>
       <Headline>Collection</Headline>
       <CollectionList>
         {artists.map(({ firstName, lastName, slug, id, artworks }) => {
@@ -51,7 +52,7 @@ export default ({ data }) => {
           )
         })}
       </CollectionList>
-    </Layout>
+    </FadeWrapper>
   )
 }
 

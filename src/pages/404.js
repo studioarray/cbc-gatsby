@@ -1,14 +1,16 @@
 import React from "react"
-import Layout from "../components/Layout"
 import SEO from "../components/seo"
-import ChangeLogoColour from "../components/ChangeLogoColour"
+import { FadeWrapper } from "../components/Transitions"
+import { useColour } from "../utils/colourContext"
 
-const NotFoundPage = () => (
-  <Layout>
-    <ChangeLogoColour newColour="0,0,0" />
-    <SEO title="404: Not found" />
-    <h1>NOT FOUND</h1>
-  </Layout>
-)
-
+const NotFoundPage = () => {
+  const { setColour } = useColour()
+  setColour("0,0,0")
+  return (
+    <FadeWrapper>
+      <SEO title="404: Not found" />
+      <h1>NOT FOUND</h1>
+    </FadeWrapper>
+  )
+}
 export default NotFoundPage

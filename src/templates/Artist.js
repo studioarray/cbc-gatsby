@@ -1,9 +1,7 @@
 import React from "react"
-import Layout from "../components/Layout"
 import _ from "lodash"
-import { graphql, Link } from "gatsby"
+import { graphql } from "gatsby"
 import Image from "../components/Image"
-import ChangeLogoColour from "../components/ChangeLogoColour"
 import {
   Headline,
   CollectionList,
@@ -13,16 +11,19 @@ import {
   Link as TitleLink,
   Meta,
 } from "../components/Styled"
+import { FadeWrapper, Link } from "../components/Transitions"
+import { useColour } from "../utils/colourContext"
 
 export default ({ data }) => {
   const { firstName, lastName, artworks } = data.artist.getArtist
   const sortedArtworks = _.reverse(
     _.sortBy(artworks.items, ["sortYear", "catalogueNumber"])
   )
-  return (
-    <Layout>
-      <ChangeLogoColour newColour="0,0,0" />
+  const { setColour } = useColour()
+  setColour("0,0,0")
 
+  return (
+    <FadeWrapper>
       <Headline>
         {firstName} {lastName}
       </Headline>
@@ -48,7 +49,7 @@ export default ({ data }) => {
           </CollectionListItem>
         ))}
       </CollectionList>
-    </Layout>
+    </FadeWrapper>
   )
 }
 
