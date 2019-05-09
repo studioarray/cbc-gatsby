@@ -100,20 +100,17 @@ export const Menu = styled.nav`
     background: rgba(240, 240, 240, 0.7);
     backdrop-filter: blur(15px);
   }
-  transition: transform 0.25s ease-out;
   transition: ${({ active }) =>
-    active
-      ? css`transform 0.25s ease-out, opacity 0.2s ease-out`
-      : css`transform 0.25s ease-in .45s, opacity 0.2s ease-in .5s`};
+    active ? css`opacity 0.2s ease-out` : css`opacity 0.2s ease-in .5s`};
   ${({ active }) =>
     active
       ? css`
-          transform: translateY(0);
           opacity: 1;
+          pointer-events: auto;
         `
       : css`
-          transform: translateY(-100%);
           opacity: 0;
+          pointer-events: none;
         `}
   ul {
     list-style: none;
