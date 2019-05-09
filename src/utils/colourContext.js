@@ -5,6 +5,7 @@ const ColourContext = React.createContext()
 function ColourProvider(props) {
   const [colour, setColour] = React.useState("0,0,0")
   const value = React.useMemo(() => {
+    // console.log(`Colour change: ${colour}`)
     return {
       colour,
       setColour,

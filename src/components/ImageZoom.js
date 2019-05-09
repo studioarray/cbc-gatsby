@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect, useMemo } from "react"
 import posed from "react-pose"
 import useComponentSize from "@rehooks/component-size"
 import useWindowSize from "../hooks/useWindowSize"
+import { useImageZoom } from "../utils/imageZoomContext"
 
 const transition = {
   duration: 400,
@@ -44,6 +45,7 @@ export default ({ children }) => {
   let size = useComponentSize(ref)
   let windowSize = useWindowSize()
   const [zoom, setZoom] = useState(false)
+  const { setImageZoom } = useImageZoom()
   const [aspectRatio, setAspectRatio] = useState(0)
   const [placeHolderHeight, setPlaceHolderHeight] = useState(size.height)
   const pose = zoom ? "zoomedIn" : "zoomedOut"
@@ -58,9 +60,11 @@ export default ({ children }) => {
 
   useEffect(() => {
     if (zoom) {
+      setImageZoom(true)
       window.addEventListener("wheel", () => setZoom(false))
       document.body.classList.add("locked")
     } else {
+      setImageZoom(false)
       window.removeEventListener("wheel", () => setZoom(false))
       document.body.classList.remove("locked")
     }
