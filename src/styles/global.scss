@@ -45,3 +45,16 @@ body {
   bottom: 0;
   transform: translateZ(0);
 }
+
+a {
+  text-decoration: none;
+  transition: color 0.25s ease-out;
+  &:link,
+  &:visited,
+  &:active {
+    color: rgba(0, 0, 0, 0.8);
+  }
+  &:hover {
+    color: rgba(100, 100, 100, 0.8);
+  }
+}

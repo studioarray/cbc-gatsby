@@ -1,21 +1,37 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
+import { useStaticQuery, graphql } from "gatsby"
 import Image from "./Image"
-import ChangeLogoColour from "./ChangeLogoColour"
 import { Link } from "./Transitions"
 import {
   FeaturedArtworkWrapper,
   FeaturedArtworkInner,
   FeaturedArtworkMeta,
 } from "./Styled"
+import { useColour } from "../utils/colourContext"
+import _ from "lodash"
 
-const FeaturedArtwork = props => {
+export function FeaturedArtwork() {
+  const data = useStaticQuery(featuredImagesQuery)
+  const [randomArtwork, setRandomArtwork] = useState()
+
+  useEffect(() => {
+    const items = data.cbc.listArtworks.items
+    const selectedItem = _.sample(items)
+    setRandomArtwork(selectedItem)
+  }, [])
+
+  return randomArtwork !== undefined ? <Artwork {...randomArtwork} /> : null
+}
+
+const Artwork = props => {
   const { title, artist, date, images, slug } = props
   const { file, colour } = images.items[0]
   const { firstName, lastName } = artist
+  const { setColour } = useColour()
+  setColour(colour)
   return (
     <FeaturedArtworkWrapper>
       <FeaturedArtworkInner>
-        <ChangeLogoColour newColour={colour} />
         <div className="image-wrapper">
           <Link to={`/artworks/${slug}`}>
             <Image fileKey={file.key} />
@@ -36,4 +52,32 @@ const FeaturedArtwork = props => {
   )
 }
 
-export default FeaturedArtwork
+const featuredImagesQuery = graphql`
+  query {
+    cbc {
+      listArtworks(
+        filter: { featured: { eq: true }, visibility: { eq: public } }
+        limit: 1000
+      ) {
+        items {
+          title
+          date
+          slug
+          images {
+            items {
+              colour
+              file {
+                key
+              }
+            }
+          }
+          artist {
+            firstName
+            lastName
+            slug
+          }
+        }
+      }
+    }
+  }
+`

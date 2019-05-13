@@ -12,6 +12,7 @@ import {
 } from "../components/Styled"
 import { FadeWrapper } from "../components/Transitions"
 
+import _ from "lodash"
 import { useColour } from "../utils/colourContext"
 
 export default ({ data }) => {
@@ -26,8 +27,11 @@ export default ({ data }) => {
   } = data.artwork.getArtwork
   const { firstName, lastName } = artist
 
+  if (!_.has(images, "items")) return null
+
   const { setColour } = useColour()
-  setColour(images.items[0].colour)
+  const colour = images.items.length > 0 ? images.items[0].colour : "0,0,0"
+  setColour(colour)
 
   return (
     <FadeWrapper>

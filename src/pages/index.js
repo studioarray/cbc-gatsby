@@ -1,10 +1,13 @@
 import React from "react"
-// import FeaturedArtworkSelector from "../components/FeaturedArtworkSelector"
+import { FeaturedArtwork } from "../components/FeaturedArtwork"
 import { FadeWrapper } from "../components/Transitions"
 
 const IndexPage = () => {
-  return <FadeWrapper>Front page</FadeWrapper>
+  return (
+    <FadeWrapper>
+      <FeaturedArtwork />
+    </FadeWrapper>
+  )
 }
-// {/* <FeaturedArtworkSelector /> */}
 
 export default IndexPage
