@@ -21,36 +21,24 @@ export default ({ data }) => {
     <FadeWrapper>
       <Headline>Collection</Headline>
       <CollectionList>
-        {artists.map(({ firstName, lastName, slug, id, artworks }) => {
-          // Filter out artworks with missing images
-          const artworkWithImages = _.reject(
-            artworks.items,
-            o => !(o.images.items.length > 0)
-          )
-          // Sort ascending by sort year
-          const sortedArtworks = _.sortBy(artworkWithImages, ["sortYear"])
-
-          // Get image for first item in array
-          const image =
-            sortedArtworks.length > 0
-              ? sortedArtworks[0].images.items[0].file
-              : null
-
-          return (
-            <CollectionListItem key={id}>
-              <CollectionName>
-                <BoldLink to={`/artists/${slug}`}>
-                  {firstName} {lastName}
-                </BoldLink>
-              </CollectionName>
-              <CollectionImage>
-                <Link to={`/artists/${slug}`}>
-                  {image !== null ? <Image fileKey={image.key} /> : "No image"}
-                </Link>
-              </CollectionImage>
-            </CollectionListItem>
-          )
-        })}
+        {artists.map(({ firstName, lastName, slug, id, thumbnail }) => (
+          <CollectionListItem key={id}>
+            <CollectionName>
+              <BoldLink to={`/artists/${slug}`}>
+                {firstName} {lastName}
+              </BoldLink>
+            </CollectionName>
+            <CollectionImage>
+              <Link to={`/artists/${slug}`}>
+                {thumbnail !== null ? (
+                  <Image fileKey={thumbnail.file.key} />
+                ) : (
+                  "No image"
+                )}
+              </Link>
+            </CollectionImage>
+          </CollectionListItem>
+        ))}
       </CollectionList>
     </FadeWrapper>
   )
@@ -65,19 +53,11 @@ export const query = graphql`
           lastName
           slug
           id
-          artworks(limit: 1000, filter: { visibility: { eq: public } }) {
-            items {
-              sortYear
-              images(filter: { index: { eq: 0 } }) {
-                items {
-                  index
-                  file {
-                    region
-                    bucket
-                    key
-                  }
-                }
-              }
+          thumbnail {
+            file {
+              key
+              bucket
+              region
             }
           }
         }
@@ -86,3 +66,19 @@ export const query = graphql`
     }
   }
 `
+
+// artworks(limit: 1000, filter: { visibility: { eq: public } }) {
+//   items {
+//     sortYear
+//     images(filter: { index: { eq: 0 } }) {
+//       items {
+//         index
+//         file {
+//           region
+//           bucket
+//           key
+//         }
+//       }
+//     }
+//   }
+// }
