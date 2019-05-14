@@ -191,7 +191,7 @@ export const BoldLink = styled(Link)`
 
 export const FullHeight = styled.section`
   /* min-height: 100vh; */
-  margin: 0 22px;
+  margin: 0;
   position: relative;
 `
 
@@ -281,6 +281,8 @@ export const List = styled.ul`
 `
 export const CollectionList = styled(List)`
   margin-top: 1em;
+  margin-left: ${settings.spacing}px;
+  margin-right: ${settings.spacing}px;
   padding-bottom: 1em;
   @media (min-width: 740px) {
     display: grid;
@@ -330,7 +332,7 @@ export const CollectionImage = styled.div`
 `
 
 export const ArtistsList = styled(List)`
-  margin-top: ${settings.spacing * 2}px;
+  margin: ${settings.spacing * 2}px ${settings.spacing}px;
   padding-bottom: 1em;
   font-size: ${settings.fontSize.medium};
   li:not(:last-child) {
@@ -407,7 +409,7 @@ export const Meta = styled.div`
 `
 
 export const ArtworkWrapper = styled.section`
-  margin-top: 1em;
+  margin: 1em ${settings.spacing}px 0 ${settings.spacing}px;
   padding-bottom: 1em;
   @media (min-width: 740px) {
     display: grid;
@@ -427,8 +429,8 @@ export const ArtworkMeta = styled.div`
 `
 
 export const AboutText = styled.div`
-  margin-top: 1em;
-  padding-bottom: 1em;
+  margin: 1em 0 0;
+  padding: 1em ${settings.spacing}px;
   font-size: 14px;
   max-width: 460px;
   position: relative;
@@ -494,6 +496,7 @@ export const StyledForm = styled(Form)`
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
+  padding: 0 ${settings.spacing}px;
 `
 
 export const FormButton = styled.button`
