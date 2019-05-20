@@ -13,9 +13,10 @@ import {
 } from "../components/Styled"
 import { FadeWrapper, Link } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
+import { PrevArtist, NextArtist } from "../components/NextPrevArtist"
 
 export default ({ data }) => {
-  const { firstName, lastName, artworks } = data.artist.getArtist
+  const { firstName, lastName, slug, artworks } = data.artist.getArtist
   const sortedArtworks = _.reverse(
     _.sortBy(artworks.items, ["sortYear", "catalogueNumber"])
   )
@@ -24,9 +25,11 @@ export default ({ data }) => {
 
   return (
     <FadeWrapper>
+      <PrevArtist slug={slug} />
       <Headline>
         {firstName} {lastName}
       </Headline>
+      <NextArtist slug={slug} />
       <CollectionList>
         {sortedArtworks.map(({ title, date, id, images, slug }) => (
           <CollectionListItem key={id}>

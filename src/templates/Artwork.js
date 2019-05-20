@@ -11,9 +11,11 @@ import {
   ArtworkMeta,
 } from "../components/Styled"
 import { FadeWrapper } from "../components/Transitions"
+import { PrevArtist, NextArtist } from "../components/NextPrevArtist"
 
 import _ from "lodash"
 import { useColour } from "../utils/colourContext"
+import { PrevArtwork, NextArtwork } from "../components/NextPrevArtwork"
 
 export default ({ data }) => {
   const {
@@ -22,6 +24,7 @@ export default ({ data }) => {
     catalogueNumber,
     date,
     images,
+    slug,
     measurements,
     technique,
   } = data.artwork.getArtwork
@@ -36,9 +39,11 @@ export default ({ data }) => {
   return (
     <FadeWrapper>
       <Headline>
+        <PrevArtist slug={artist.slug} />
         <Link to={`/artists/${artist.slug}`}>
           {firstName} {lastName}
         </Link>
+        <NextArtist slug={artist.slug} />
       </Headline>
       <ArtworkWrapper>
         <ArtworkImage>
@@ -59,6 +64,9 @@ export default ({ data }) => {
           <Meta uppercase small>
             CBS {catalogueNumber}
           </Meta>
+
+          <PrevArtwork artworkSlug={slug} artistSlug={artist.slug} />
+          <NextArtwork artworkSlug={slug} artistSlug={artist.slug} />
         </ArtworkMeta>
       </ArtworkWrapper>
     </FadeWrapper>

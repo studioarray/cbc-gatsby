@@ -1,1 +1,8 @@
-<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 216.59"><title>cbc</title><path d="M73.06,216.59a54.15,54.15,0,1,0,0-108.29Z"/><path d="M73.06,108.29A54.15,54.15,0,1,0,73.06,0Z"/><path d="M54.15,216.59a54.15,54.15,0,1,1,0-108.29Z"/><path d="M200,108.29A54.15,54.15,0,1,1,200,0Z"/></svg>
+<svg id="cbc_logo" data-name="Christian Bjelland Collection" 
+  xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 216.59">
+  <title>Christian Bjelland Collection</title>
+  <path d="M73.06,216.59a54.15,54.15,0,1,0,0-108.29Z"/>
+  <path d="M73.06,108.29A54.15,54.15,0,1,0,73.06,0Z"/>
+  <path d="M54.15,216.59a54.15,54.15,0,1,1,0-108.29Z"/>
+  <path d="M200,108.29A54.15,54.15,0,1,1,200,0Z"/>
+</svg>

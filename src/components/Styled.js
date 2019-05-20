@@ -21,7 +21,7 @@ export const LogoWrapper = styled.div`
   width: 24.53333%;
   max-width: 184px;
   min-width: 67px;
-  position: fixed;
+  position: absolute;
   top: 42px;
   right: 0;
   padding-left: 1px; /* Scaling issue fix */
@@ -202,7 +202,7 @@ export const Main = styled.main`
 export const FeaturedArtworkWrapper = styled.section`
   width: 100%;
   height: 100%;
-  min-height: calc(100vh - 1em);
+  min-height: calc(100vh - 40px);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -229,14 +229,11 @@ export const FeaturedArtworkInner = styled.figure`
   }
 `
 export const Footer = styled.footer`
-  width: 100%;
+  width: calc(100% - ${settings.spacing * 2}px);
   font-size: ${settings.fontSize.small};
   white-space: nowrap;
   line-height: 1em;
-  margin: 0;
-  position: fixed;
-  left: ${settings.spacing}px;
-  bottom: 20px;
+  margin: 20px ${settings.spacing}px;
   @media (min-width: 740px) {
     left: auto;
     line-height: 1em;

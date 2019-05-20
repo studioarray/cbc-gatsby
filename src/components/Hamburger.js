@@ -20,10 +20,7 @@ const HamburgerButton = styled.button`
   position: fixed;
   z-index: 20;
   top: 48px;
-  left: 22px;
-  @media (min-width: 740px) {
-    left: 30px;
-  }
+  left: 30px;
 
   transition-property: opacity, filter;
   transition-duration: 0.15s;
