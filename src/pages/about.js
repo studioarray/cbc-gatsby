@@ -1,7 +1,9 @@
 import React from "react"
 import { useColour } from "../utils/colourContext"
-import { Headline, AboutText } from "../components/Styled"
+import { Headline } from "../components/Styled"
 import { FadeWrapper } from "../components/Transitions"
+import styled from "styled-components"
+import { settings } from "../utils/settings"
 
 export default () => {
   const { setColour } = useColour()
@@ -31,3 +33,13 @@ export default () => {
     </FadeWrapper>
   )
 }
+
+const AboutText = styled.div`
+  margin: 1em 0 0;
+  padding: 1em ${settings.spacing}px;
+  font-size: 14px;
+  max-width: 460px;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+`

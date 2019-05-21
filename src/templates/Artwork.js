@@ -2,14 +2,9 @@ import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
 import ImageZoom from "../components/ImageZoom"
-import {
-  Headline,
-  Meta,
-  ArtworkWrapper,
-  Link,
-  ArtworkImage,
-  ArtworkMeta,
-} from "../components/Styled"
+import { Headline, Meta, Link } from "../components/Styled"
+import styled from "styled-components"
+import { settings } from "../utils/settings"
 import { FadeWrapper } from "../components/Transitions"
 import { PrevArtist, NextArtist } from "../components/NextPrevArtist"
 
@@ -72,6 +67,26 @@ export default ({ data }) => {
     </FadeWrapper>
   )
 }
+
+const ArtworkWrapper = styled.section`
+  margin: 1em ${settings.spacing}px 0 ${settings.spacing}px;
+  padding-bottom: 1em;
+  @media (min-width: 740px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: ${settings.spacing}px;
+  }
+`
+
+const ArtworkImage = styled.figure`
+  margin: 0;
+  & > div {
+    margin-bottom: ${settings.fontSize.large};
+  }
+`
+const ArtworkMeta = styled.div`
+  margin-bottom: 2em;
+`
 
 export const query = graphql`
   query($id: ID!, $regexCatalogueNumber: String!) {

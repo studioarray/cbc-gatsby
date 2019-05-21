@@ -2,14 +2,13 @@ import React from "react"
 import _ from "lodash"
 import Image from "../components/Image"
 import { graphql } from "gatsby"
+import { Headline, BoldLink } from "../components/Styled"
 import {
-  Headline,
-  BoldLink,
   CollectionList,
   CollectionListItem,
   CollectionName,
   CollectionImage,
-} from "../components/Styled"
+} from "../templates/Artist"
 import { FadeWrapper, Link } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
 

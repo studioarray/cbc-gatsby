@@ -2,15 +2,9 @@ import React from "react"
 import _ from "lodash"
 import { graphql } from "gatsby"
 import Image from "../components/Image"
-import {
-  Headline,
-  CollectionList,
-  CollectionListItem,
-  CollectionName,
-  CollectionImage,
-  Link as TitleLink,
-  Meta,
-} from "../components/Styled"
+import { Headline, List, Link as TitleLink, Meta } from "../components/Styled"
+import { settings } from "../utils/settings"
+import styled from "styled-components"
 import { FadeWrapper, Link } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
 import { PrevArtist, NextArtist } from "../components/NextPrevArtist"
@@ -55,6 +49,57 @@ export default ({ data }) => {
     </FadeWrapper>
   )
 }
+
+const CollectionList = styled(List)`
+  margin-top: 1em;
+  margin-left: ${settings.spacing}px;
+  margin-right: ${settings.spacing}px;
+  padding-bottom: 1em;
+  @media (min-width: 740px) {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: ${settings.spacing}px;
+  }
+  @media (min-width: 1100px) {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+  @media (min-width: 2000px) {
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+  }
+`
+const CollectionListItem = styled.li`
+  display: flex;
+  margin: 0 0 ${settings.spacing}px;
+  @media (min-width: 360px) {
+    flex-direction: row-reverse;
+  }
+`
+const CollectionName = styled.div`
+  width: 50%;
+  @media (min-width: 360px) {
+    width: calc(50% - 11px);
+    margin-left: 11px;
+    align-self: flex-end;
+  }
+  @media (min-width: 740px) {
+    width: calc(50% - 15px);
+    margin-left: 15px;
+  }
+`
+const CollectionImage = styled.div`
+  width: 50%;
+  @media (min-width: 360px) {
+    width: calc(50% - 11px);
+    margin-right: 11px;
+    align-self: flex-end;
+  }
+  @media (min-width: 740px) {
+    width: calc(50% - 15px);
+    margin-right: 15px;
+  }
+`
+
+export { CollectionList, CollectionListItem, CollectionName, CollectionImage }
 
 export const query = graphql`
   query($id: ID!) {
