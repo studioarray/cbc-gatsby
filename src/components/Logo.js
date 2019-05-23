@@ -9,33 +9,25 @@ const Logo = () => {
   // console.log(`Colour: ${colour}`)
   // TODO: Fix colour transition lag, why is it getting called multiple times? Transition link...
   return (
-    <Link to="/">
-      <LogoWrapper colour={colour}>
-        <CBCLogo />
-      </LogoWrapper>
-    </Link>
+    <LogoLink to="/" colour={colour}>
+      <CBCLogo />
+    </LogoLink>
   )
 }
 
-const LogoWrapper = styled.div`
-  width: 24.53333%;
-  max-width: 184px;
-  min-width: 67px;
-  position: absolute;
-  top: 42px;
-  right: 0;
+const LogoLink = styled(Link)`
+  display: inline-block;
+  width: 80%;
+  height: 80%;
+  margin: 10% 0 10% 20%;
+  max-width: 180px;
   padding-left: 1px; /* Scaling issue fix */
-  z-index: 20;
   & path {
     transition: fill 0.2s ease-in;
     fill: ${props => `rgb(${props.colour})`};
   }
   & svg {
     overflow: visible; /* Scaling issue fix */
-  }
-  @media (max-width: 270px) {
-    right: auto;
-    left: calc(270px - 67px);
   }
 `
 

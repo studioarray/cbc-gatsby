@@ -29,11 +29,7 @@ export const Headline = styled.h1`
   font-size: 24px;
   font-weight: bold;
   text-transform: uppercase;
-  margin-top: 160px;
   margin-bottom: ${settings.spacing}px;
-  @media (min-width: 360px) {
-    margin-top: 170px;
-  }
 `
 export const List = styled.ul`
   list-style: none;
