@@ -1,4 +1,4 @@
-import React, { useRef } from "react"
+import React from "react"
 import Menu from "./Menu"
 import Logo from "./Logo"
 import LogoWordMark from "./LogoWordMark"
@@ -6,6 +6,7 @@ import FeaturedArtworkMeta from "./FeaturedArtworkMeta"
 import { Copyright } from "./Copyright"
 import styled from "styled-components"
 import { useFeatured } from "../utils/featuredContext"
+import { settings } from "../utils/settings"
 
 export default props => {
   const { featured } = useFeatured()
@@ -67,6 +68,8 @@ const HeaderInnerRight = styled.div`
 
 const Main = styled.main`
   position: relative;
+  min-width: calc(300px - ${settings.spacing * 2}px);
+  margin: 0 ${settings.spacing}px;
   flex: 1;
 `
 

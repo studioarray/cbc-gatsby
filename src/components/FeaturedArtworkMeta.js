@@ -31,9 +31,10 @@ export default function FeaturedArtworkMeta({ location }) {
 const Meta = styled.div`
   font-size: ${settings.fontSize.small};
   font-style: italic;
-  margin: ${settings.spacing}px;
+  margin: 1em ${settings.spacing}px;
 
   @media (min-width: 740px) {
+    margin: ${settings.spacing}px;
     position: absolute;
     left: 0;
     bottom: 0;

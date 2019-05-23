@@ -19,11 +19,17 @@ export default ({ data }) => {
 
   return (
     <FadeWrapper>
-      <PrevArtist slug={slug} />
-      <Headline>
-        {firstName} {lastName}
-      </Headline>
-      <NextArtist slug={slug} />
+      <ArrowHeader>
+        <Left>
+          <PrevArtist slug={slug} />
+        </Left>
+        <Headline>
+          {firstName} {lastName}
+        </Headline>
+        <Right>
+          <NextArtist slug={slug} />
+        </Right>
+      </ArrowHeader>
       <CollectionList>
         {sortedArtworks.map(({ title, date, id, images, slug }) => (
           <CollectionListItem key={id}>
@@ -50,11 +56,32 @@ export default ({ data }) => {
   )
 }
 
+export const ArrowHeader = styled.div`
+  display: flex;
+  min-width: calc(300px - ${settings.spacing * 2}px);
+  align-items: center;
+  h1,
+  h2 {
+    flex: 1;
+    @media (min-width: ${settings.breakpoints.medium}) {
+      flex: inherit;
+    }
+  }
+`
+export const Right = styled.div`
+  flex: inherit;
+  min-width: 16px;
+  margin: 0;
+  @media (min-width: ${settings.breakpoints.medium}) {
+    flex: 1;
+    margin: 0 ${settings.spacing}px;
+  }
+`
+export const Left = styled(Right)`
+  text-align: right;
+`
+
 const CollectionList = styled(List)`
-  margin-top: 1em;
-  margin-left: ${settings.spacing}px;
-  margin-right: ${settings.spacing}px;
-  padding-bottom: 1em;
   @media (min-width: 740px) {
     display: grid;
     grid-template-columns: 1fr 1fr;

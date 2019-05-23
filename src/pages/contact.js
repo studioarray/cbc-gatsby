@@ -146,7 +146,6 @@ const Form = styled(FormikForm)`
   width: 100%;
   max-width: 400px;
   margin: 0 auto;
-  padding: 0 ${settings.spacing}px;
 `
 
 const FormButton = styled.button`

@@ -35,9 +35,7 @@ export default () => {
 }
 
 const AboutText = styled.div`
-  margin: 1em 0 0;
-  padding: 1em ${settings.spacing}px;
-  font-size: 14px;
+  font-size: ${settings.fontSize.large};
   max-width: 460px;
   position: relative;
   left: 50%;

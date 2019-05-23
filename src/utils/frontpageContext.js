@@ -6,7 +6,7 @@ const INITIAL_STATE = false
 function FrontpageProvider(props) {
   const [frontpage, setFrontpage] = React.useState(INITIAL_STATE)
   const value = React.useMemo(() => {
-    console.log(`frontpage === ${frontpage}`)
+    // console.log(`frontpage === ${frontpage}`)
     return {
       frontpage,
       setFrontpage,

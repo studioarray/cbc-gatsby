@@ -11,6 +11,7 @@ import { PrevArtist, NextArtist } from "../components/NextPrevArtist"
 import _ from "lodash"
 import { useColour } from "../utils/colourContext"
 import { PrevArtwork, NextArtwork } from "../components/NextPrevArtwork"
+import { ArrowHeader, Left, Right } from "./Artist"
 
 export default ({ data }) => {
   const {
@@ -33,13 +34,19 @@ export default ({ data }) => {
 
   return (
     <FadeWrapper>
-      <Headline>
-        <PrevArtist slug={artist.slug} />
-        <Link to={`/artists/${artist.slug}`}>
-          {firstName} {lastName}
-        </Link>
-        <NextArtist slug={artist.slug} />
-      </Headline>
+      <ArrowHeader>
+        <Left>
+          <PrevArtist slug={artist.slug} />
+        </Left>
+        <Headline>
+          <Link to={`/artists/${artist.slug}`}>
+            {firstName} {lastName}
+          </Link>
+        </Headline>
+        <Right>
+          <NextArtist slug={artist.slug} />
+        </Right>
+      </ArrowHeader>
       <ArtworkWrapper>
         <ArtworkImage>
           {data.images &&
@@ -50,18 +57,36 @@ export default ({ data }) => {
             ))}
         </ArtworkImage>
         <ArtworkMeta>
-          <Meta artworktitle="true">
-            {title.replace(/\s(\S+)$/, `${String.fromCharCode(160)}$1`)}
-          </Meta>
+          <ShowOnMobile>
+            <ArrowHeader>
+              <Left>
+                <PrevArtwork artworkSlug={slug} artistSlug={artist.slug} />
+              </Left>
+              <ArtworkTitle>
+                {title.replace(/\s(\S+)$/, `${String.fromCharCode(160)}$1`)}
+              </ArtworkTitle>
+              <Right>
+                <NextArtwork artworkSlug={slug} artistSlug={artist.slug} />
+              </Right>
+            </ArrowHeader>
+          </ShowOnMobile>
+          <HideOnMobile>
+            <Meta artworktitle="true">
+              {title.replace(/\s(\S+)$/, `${String.fromCharCode(160)}$1`)}
+            </Meta>
+          </HideOnMobile>
           <Meta>{date.replace(/-/gi, "—")}</Meta>
           <Meta lineBreak>{technique}</Meta>
           <Meta>{measurements.replace(/x/gi, "×")}</Meta>
           <Meta uppercase small>
             CBS {catalogueNumber}
           </Meta>
-
-          <PrevArtwork artworkSlug={slug} artistSlug={artist.slug} />
-          <NextArtwork artworkSlug={slug} artistSlug={artist.slug} />
+          <HideOnMobile>
+            <StackedArrows>
+              <PrevArtwork artworkSlug={slug} artistSlug={artist.slug} />
+              <NextArtwork artworkSlug={slug} artistSlug={artist.slug} />
+            </StackedArrows>
+          </HideOnMobile>
         </ArtworkMeta>
       </ArtworkWrapper>
     </FadeWrapper>
@@ -69,15 +94,43 @@ export default ({ data }) => {
 }
 
 const ArtworkWrapper = styled.section`
-  margin: 1em ${settings.spacing}px 0 ${settings.spacing}px;
-  padding-bottom: 1em;
-  @media (min-width: 740px) {
+  @media (min-width: ${settings.breakpoints.medium}) {
     display: grid;
     grid-template-columns: 1fr 1fr;
     grid-column-gap: ${settings.spacing}px;
   }
 `
 
+const ShowOnMobile = styled.span`
+  display: block;
+  margin-bottom: ${settings.spacing}px;
+  @media (min-width: ${settings.breakpoints.medium}) {
+    display: none;
+  }
+`
+
+const HideOnMobile = styled.span`
+  display: none;
+  @media (min-width: ${settings.breakpoints.medium}) {
+    display: initial;
+  }
+`
+
+const StackedArrows = styled.div`
+  margin-top: 20px;
+  a {
+    float: left;
+    clear: both;
+  }
+`
+
+const ArtworkTitle = styled.h2`
+  font-size: ${settings.fontSize.large};
+  font-weight: bold;
+  text-transform: uppercase;
+  text-align: center;
+  margin: 0;
+`
 const ArtworkImage = styled.figure`
   margin: 0;
   & > div {

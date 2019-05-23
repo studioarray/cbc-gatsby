@@ -36,8 +36,6 @@ export default ({ artists }) => {
 }
 
 const ArtistsList = styled(List)`
-  margin: ${settings.spacing * 2}px ${settings.spacing}px;
-  padding-bottom: 1em;
   font-size: ${settings.fontSize.medium};
   li:not(:last-child) {
     border-bottom: 1px solid #ddd;

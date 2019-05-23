@@ -25,11 +25,14 @@ export const BoldLink = styled(Link)`
   font-weight: bold;
 `
 export const Headline = styled.h1`
-  text-align: center;
-  font-size: 24px;
-  font-weight: bold;
   text-transform: uppercase;
-  margin-bottom: ${settings.spacing}px;
+  text-align: center;
+  font-weight: bold;
+  margin: 1em 0;
+  font-size: 20px;
+  @media (min-width: ${settings.breakpoints.medium}) {
+    font-size: 24px;
+  }
 `
 export const List = styled.ul`
   list-style: none;

@@ -8,7 +8,7 @@ export const NextArtist = function NextArtist({ slug }) {
   const { nextUrl } = LinkProvider(slug)
   return (
     nextUrl && (
-      <Link to={nextUrl}>
+      <Link to={nextUrl} style={{ display: "inline-block" }}>
         <Arrow direction="right" />
       </Link>
     )
@@ -19,7 +19,7 @@ export const PrevArtist = function PrevArtist({ slug }) {
   const { prevUrl } = LinkProvider(slug)
   return (
     prevUrl && (
-      <Link to={prevUrl}>
+      <Link to={prevUrl} style={{ display: "inline-block" }}>
         <Arrow />
       </Link>
     )

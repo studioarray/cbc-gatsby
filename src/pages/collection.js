@@ -65,19 +65,3 @@ export const query = graphql`
     }
   }
 `
-
-// artworks(limit: 1000, filter: { visibility: { eq: public } }) {
-//   items {
-//     sortYear
-//     images(filter: { index: { eq: 0 } }) {
-//       items {
-//         index
-//         file {
-//           region
-//           bucket
-//           key
-//         }
-//       }
-//     }
-//   }
-// }

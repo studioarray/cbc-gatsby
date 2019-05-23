@@ -9,7 +9,7 @@ export const NextArtwork = function NextArtwork({ artworkSlug, artistSlug }) {
   return (
     nextUrl && (
       <Link to={nextUrl}>
-        <Arrow direction="right" />
+        <Arrow direction="right" artwork="true" />
       </Link>
     )
   )
@@ -20,7 +20,7 @@ export const PrevArtwork = function PrevArtwork({ artworkSlug, artistSlug }) {
   return (
     prevUrl && (
       <Link to={prevUrl}>
-        <Arrow />
+        <Arrow artwork="true" />
       </Link>
     )
   )
