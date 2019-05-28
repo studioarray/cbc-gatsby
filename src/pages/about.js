@@ -4,12 +4,14 @@ import { Headline } from "../components/Styled"
 import { FadeWrapper } from "../components/Transitions"
 import styled from "styled-components"
 import { settings } from "../utils/settings"
+import SEO from "../components/SEO"
 
 export default () => {
   const { setColour } = useColour()
   setColour("0,0,0")
   return (
     <FadeWrapper>
+      <SEO title="About" />
       <Headline>About</Headline>
       <AboutText>
         <p>

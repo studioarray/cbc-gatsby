@@ -5,7 +5,8 @@ require("dotenv").config({
 module.exports = {
   siteMetadata: {
     title: `Christian Bjelland Collection`,
-    description: ``,
+    description: `The private art collection of Christian Bjelland.`,
+    author: `Christian Bjelland`,
   },
   plugins: [
     {

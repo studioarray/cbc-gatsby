@@ -12,6 +12,7 @@ import _ from "lodash"
 import { useColour } from "../utils/colourContext"
 import { PrevArtwork, NextArtwork } from "../components/NextPrevArtwork"
 import { ArrowHeader, Left, Right } from "./Artist"
+import SEO from "../components/SEO"
 
 export default ({ data }) => {
   const {
@@ -34,6 +35,9 @@ export default ({ data }) => {
 
   return (
     <FadeWrapper>
+      <SEO
+        title={`${firstName} ${lastName} ${String.fromCharCode(8212)} ${title}`}
+      />
       <ArrowHeader>
         <Left>
           <PrevArtist slug={artist.slug} />
@@ -77,7 +81,9 @@ export default ({ data }) => {
           </HideOnMobile>
           <Meta>{date.replace(/-/gi, "—")}</Meta>
           <Meta lineBreak>{technique}</Meta>
-          <Meta>{measurements.replace(/x/gi, "×")}</Meta>
+          <Meta>
+            {measurements.replace(/x/gi, `${String.fromCharCode(215)}`)}
+          </Meta>
           <Meta uppercase small>
             CBS {catalogueNumber}
           </Meta>

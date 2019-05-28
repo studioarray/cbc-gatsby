@@ -11,12 +11,14 @@ import { settings } from "../utils/settings"
 import * as Yup from "yup"
 import { FadeWrapper } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
+import SEO from "../components/SEO"
 
 const Contact = () => {
   const { setColour } = useColour()
   setColour("0,0,0")
   return (
     <FadeWrapper>
+      <SEO title="Contact" />
       <Headline>Contact</Headline>
       <Formik
         initialValues={{

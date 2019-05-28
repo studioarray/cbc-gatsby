@@ -11,6 +11,7 @@ import {
 } from "../templates/Artist"
 import { FadeWrapper, Link } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
+import SEO from "../components/SEO"
 
 export default ({ data }) => {
   const artists = _.sortBy(data.cbc.listArtists.items, ["lastName"])
@@ -18,6 +19,7 @@ export default ({ data }) => {
   setColour("0,0,0")
   return (
     <FadeWrapper>
+      <SEO title="Collection" />
       <Headline>Collection</Headline>
       <CollectionList>
         {artists.map(({ firstName, lastName, slug, id, thumbnail }) => (

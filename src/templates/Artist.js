@@ -8,6 +8,7 @@ import styled from "styled-components"
 import { FadeWrapper, Link } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
 import { PrevArtist, NextArtist } from "../components/NextPrevArtist"
+import SEO from "../components/SEO"
 
 export default ({ data }) => {
   const { firstName, lastName, slug, artworks } = data.artist.getArtist
@@ -19,6 +20,7 @@ export default ({ data }) => {
 
   return (
     <FadeWrapper>
+      <SEO title={`${firstName} ${lastName}`} />
       <ArrowHeader>
         <Left>
           <PrevArtist slug={slug} />
