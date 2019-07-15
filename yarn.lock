@@ -5565,10 +5565,8 @@ gatsby-source-graphql@^2.0.18:
     node-fetch "^1.7.3"
     uuid "^3.1.0"
 
-gatsby-source-s3-image@^1.2.17:
+gatsby-source-s3-image@./gatsby-source-s3-image:
   version "1.6.1"
-  resolved "https://registry.yarnpkg.com/gatsby-source-s3-image/-/gatsby-source-s3-image-1.6.1.tgz#1a50f237859e5933079439aac7b91ba254489e2f"
-  integrity sha512-f/9LpyCcYCiPcdXVnaYeKlvnr1sD9xYJvm2+e+K9UaAKuWPVskcgxMuj+v9Qibv8RoZ8SI+B0NgHEdzDch6k7Q==
   dependencies:
     aws-sdk "2.493.0"
     bluebird "3.5.5"
