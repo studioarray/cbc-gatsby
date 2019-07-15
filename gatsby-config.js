@@ -48,6 +48,7 @@ module.exports = {
       options: {
         bucketName: `${process.env.AWS_S3_BUCKET_NAME}`,
         protocol: "https",
+        region: "eu-west-1",
         accessKeyId: `${process.env.IAM_ACCESS_KEY_ID}`,
         secretAccessKey: `${process.env.IAM_SECRET_ACCESS_KEY}`,
       },
