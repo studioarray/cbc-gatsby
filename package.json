@@ -22,7 +22,7 @@
     "gatsby-plugin-web-font-loader": "^1.0.4",
     "gatsby-source-filesystem": "^2.0.33",
     "gatsby-source-graphql": "^2.0.18",
-    "gatsby-source-s3-image": "./gatsby-source-s3-image",
+    "gatsby-source-s3-image": "^1.4.20",
     "gatsby-transformer-sharp": "^2.1.19",
     "lodash": "^4.17.11",
     "node-sass": "^4.12.0",
