@@ -1,7 +1,7 @@
-import React from "react"
-import { PropTypes } from "prop-types"
-import { StaticQuery, graphql } from "gatsby"
+import { graphql, StaticQuery } from "gatsby"
 import Img from "gatsby-image"
+import { PropTypes } from "prop-types"
+import React from "react"
 import isMatch from "../utils/isMatch"
 
 const Image = function Image({ fileKey }) {
@@ -9,7 +9,6 @@ const Image = function Image({ fileKey }) {
   // If there is a match create and return a gatsby image
   // It's an unfortunate hack because StaticQuery's graphql call can't use variables
   try {
-    // console.log(fileKey)
     return (
       <StaticQuery
         query={graphql`
@@ -32,6 +31,7 @@ const Image = function Image({ fileKey }) {
           const file = data.images.edges.find(image =>
             isMatch(fileKey, image.node.base)
           )
+          if (!file) console.error("file not found", fileKey)
           return gatsbyImage(file)
         }}
       />
@@ -43,7 +43,8 @@ const Image = function Image({ fileKey }) {
 }
 
 // Render the image
-const gatsbyImage = file => <Img fluid={file.node.childImageSharp.fluid} />
+const gatsbyImage = file =>
+  file && <Img fluid={file.node.childImageSharp.fluid} />
 
 Image.propTypes = {
   fileKey: PropTypes.string.isRequired,

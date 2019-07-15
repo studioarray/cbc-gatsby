@@ -1,33 +1,49 @@
+import { graphql } from "gatsby"
 import React from "react"
-import { useColour } from "../utils/colourContext"
-import { Headline, AboutText } from "../components/Styled"
+import styled from "styled-components"
+import SEO from "../components/SEO"
+import { Headline } from "../components/Styled"
 import { FadeWrapper } from "../components/Transitions"
+import { useColour } from "../utils/colourContext"
+import { settings } from "../utils/settings"
 
-export default () => {
+export default ({ data }) => {
   const { setColour } = useColour()
+  const [text, setText] = React.useState()
   setColour("0,0,0")
+  React.useEffect(() => {
+    console.log(data)
+    if (data) {
+      setText(data.cbc.listAbouts.items[0].text)
+    }
+  }, [data])
   return (
     <FadeWrapper>
+      <SEO title="About" />
       <Headline>About</Headline>
-      <AboutText>
-        <p>
-          Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
-          nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
-          sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
-          rebum.
-        </p>
-        <p>
-          Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum
-          dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing
-          elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore
-          magna aliquyam erat, sed diam voluptua.
-        </p>
-        <p>
-          At vero eos et accusam et justo duo dolores et ea rebum. Stet clita
-          kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit
-          amet.
-        </p>
-      </AboutText>
+      <AboutText>{text && text}</AboutText>
     </FadeWrapper>
   )
 }
+
+const AboutText = styled.div`
+  font-size: ${settings.fontSize.medium};
+  line-height: 1.4;
+  max-width: 550px;
+  position: relative;
+  white-space: pre-line;
+  left: 50%;
+  transform: translateX(-50%);
+`
+
+export const query = graphql`
+  query {
+    cbc {
+      listAbouts {
+        items {
+          text
+        }
+      }
+    }
+  }
+`

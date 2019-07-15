@@ -2,16 +2,16 @@ import React from "react"
 import _ from "lodash"
 import Image from "../components/Image"
 import { graphql } from "gatsby"
+import { Headline, BoldLink } from "../components/Styled"
 import {
-  Headline,
-  BoldLink,
   CollectionList,
   CollectionListItem,
   CollectionName,
   CollectionImage,
-} from "../components/Styled"
+} from "../templates/Artist"
 import { FadeWrapper, Link } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
+import SEO from "../components/SEO"
 
 export default ({ data }) => {
   const artists = _.sortBy(data.cbc.listArtists.items, ["lastName"])
@@ -19,6 +19,7 @@ export default ({ data }) => {
   setColour("0,0,0")
   return (
     <FadeWrapper>
+      <SEO title="Collection" />
       <Headline>Collection</Headline>
       <CollectionList>
         {artists.map(({ firstName, lastName, slug, id, thumbnail }) => (
@@ -66,19 +67,3 @@ export const query = graphql`
     }
   }
 `
-
-// artworks(limit: 1000, filter: { visibility: { eq: public } }) {
-//   items {
-//     sortYear
-//     images(filter: { index: { eq: 0 } }) {
-//       items {
-//         index
-//         file {
-//           region
-//           bucket
-//           key
-//         }
-//       }
-//     }
-//   }
-// }

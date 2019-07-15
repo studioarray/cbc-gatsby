@@ -1,11 +1,12 @@
 require("dotenv").config({
-  path: `.env.${process.env.NODE_ENV}`,
+  path: `.env`,
 })
 
 module.exports = {
   siteMetadata: {
     title: `Christian Bjelland Collection`,
-    description: ``,
+    description: `The private art collection of Christian Bjelland.`,
+    author: `Christian Bjelland`,
   },
   plugins: [
     {
@@ -45,8 +46,10 @@ module.exports = {
     {
       resolve: "gatsby-source-s3-image",
       options: {
-        bucketName: "aws-testcd908bd94cdc4951991587c78925e6c9-dev",
+        bucketName: `${process.env.AWS_S3_BUCKET_NAME}`,
         protocol: "https",
+        accessKeyId: `${process.env.IAM_ACCESS_KEY_ID}`,
+        secretAccessKey: `${process.env.IAM_SECRET_ACCESS_KEY}`,
       },
     },
     {

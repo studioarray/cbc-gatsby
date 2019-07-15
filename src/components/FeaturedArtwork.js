@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from "react"
+import React, { useState, useEffect, useRef } from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import Image from "./Image"
 import { Link } from "./Transitions"
-import {
-  FeaturedArtworkWrapper,
-  FeaturedArtworkInner,
-  FeaturedArtworkMeta,
-} from "./Styled"
+import styled from "styled-components"
 import { useColour } from "../utils/colourContext"
 import _ from "lodash"
+import { useFeatured } from "../utils/featuredContext"
+import useComponentSize from "@rehooks/component-size"
+import { settings } from "../utils/settings"
 
 export function FeaturedArtwork() {
   const data = useStaticQuery(featuredImagesQuery)
@@ -24,33 +23,55 @@ export function FeaturedArtwork() {
 }
 
 const Artwork = props => {
+  const { setFeatured } = useFeatured()
+  const { setColour } = useColour()
   const { title, artist, date, images, slug } = props
   const { file, colour } = images.items[0]
   const { firstName, lastName } = artist
-  const { setColour } = useColour()
-  setColour(colour)
+  const ref = useRef(null)
+  const { height } = useComponentSize(ref)
+  const featured = {
+    height,
+    artist: {
+      firstName,
+      lastName,
+      slug: artist.slug,
+    },
+    artwork: {
+      title,
+      slug,
+      date,
+    },
+  }
+  useEffect(() => {
+    setFeatured(featured)
+    setColour(colour)
+  }, [height, title, colour])
   return (
     <FeaturedArtworkWrapper>
-      <FeaturedArtworkInner>
-        <div className="image-wrapper">
-          <Link to={`/artworks/${slug}`}>
-            <Image fileKey={file.key} />
-          </Link>
-        </div>
-        <FeaturedArtworkMeta>
-          <Link to={`/artists/${artist.slug}`}>
-            {firstName} {lastName}
-          </Link>
-          ,{` `}
-          <Link to={`/artworks/${slug}`} artworktitle="true">
-            {title}
-          </Link>
-          , {date.replace(/-/gi, "—")}
-        </FeaturedArtworkMeta>
-      </FeaturedArtworkInner>
+      <div className="image-wrapper" ref={ref}>
+        <Link to={`/artworks/${slug}`}>
+          <Image fileKey={file.key} />
+        </Link>
+      </div>
     </FeaturedArtworkWrapper>
   )
 }
+
+const FeaturedArtworkWrapper = styled.section`
+  background: yellow;
+  width: 100%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  @media (min-width: ${settings.breakpoints.medium}) {
+    max-width: ${settings.breakpoints.medium};
+    .image-wrapper {
+      width: 100%;
+    }
+  }
+`
 
 const featuredImagesQuery = graphql`
   query {

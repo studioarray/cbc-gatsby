@@ -5,6 +5,7 @@ import { Headline } from "../components/Styled"
 import ArtistsAlphabetic from "../components/ArtistsAlphabetic"
 import { FadeWrapper } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
+import SEO from "../components/SEO"
 
 export default ({ data }) => {
   const artists = _.sortBy(data.cbc.listArtists.items, ["lastName"])
@@ -12,6 +13,7 @@ export default ({ data }) => {
   setColour("0,0,0")
   return (
     <FadeWrapper>
+      <SEO title="Artists" />
       <Headline>Artists</Headline>
       <ArtistsAlphabetic artists={artists} />
     </FadeWrapper>

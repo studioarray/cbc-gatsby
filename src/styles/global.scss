@@ -58,3 +58,16 @@ a {
     color: rgba(100, 100, 100, 0.8);
   }
 }
+
+.tl-wrapper {
+  position: inherit;
+  float: inherit;
+  height: 100%;
+  & > div {
+    height: 100%;
+  }
+}
+.tl-edges {
+  // height: 100%;
+  overflow: visible;
+}

@@ -1,8 +1,9 @@
 import React from "react"
 import VerticalLogo from "../images/logo/logotype-vertical.svg"
 import HorisontalLogo from "../images/logo/logotype-horisontal.svg"
-import { LogoWMWrapperVertical, LogoWMWrapperHorisontal } from "./Styled"
 import { Link } from "./Transitions"
+import styled from "styled-components"
+import { settings } from "../utils/settings"
 
 const LogoWordMark = () => (
   <>
@@ -18,5 +19,21 @@ const LogoWordMark = () => (
     </LogoWMWrapperHorisontal>
   </>
 )
+
+const LogoWMWrapperVertical = styled.div`
+  display: inline-block;
+  width: 40%;
+  @media (min-width: ${settings.breakpoints.medium}) {
+    display: none;
+  }
+`
+const LogoWMWrapperHorisontal = styled.div`
+  display: none;
+  width: 100%;
+  max-width: 350px;
+  @media (min-width: ${settings.breakpoints.medium}) {
+    display: inline-block;
+  }
+`
 
 export default LogoWordMark
