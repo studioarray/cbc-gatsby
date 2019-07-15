@@ -1,19 +1,20 @@
-import React from "react"
-import { Headline } from "../components/Styled"
 import {
-  Formik,
+  ErrorMessage,
   Field as FormikField,
   Form as FormikForm,
-  ErrorMessage,
+  Formik,
 } from "formik"
+import React from "react"
 import styled, { css } from "styled-components"
-import { settings } from "../utils/settings"
 import * as Yup from "yup"
+import SEO from "../components/SEO"
+import { Headline } from "../components/Styled"
 import { FadeWrapper } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
-import SEO from "../components/SEO"
+import { settings } from "../utils/settings"
 
 const Contact = () => {
+  const [sentEmail, setSentEmail] = React.useState(false)
   const { setColour } = useColour()
   setColour("0,0,0")
   return (
@@ -22,70 +23,86 @@ const Contact = () => {
       <Headline>Contact</Headline>
       <Formik
         initialValues={{
-          fullName: "",
+          name: "",
           email: "",
           message: "",
         }}
         validationSchema={Yup.object().shape({
-          fullName: Yup.string().required("Please tell us your name."),
+          name: Yup.string().required("Please tell us your name."),
           email: Yup.string()
             .email("Please check that your email address is correct.")
             .required("We need your email so that we can reply."),
           message: Yup.string().required("The message field can not be empty."),
         })}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          setTimeout(() => {
-            console.log(JSON.stringify(values, null, 2))
-            alert("Thank you for your email.")
+          console.log(JSON.stringify(values, null, 2))
+          console.log("Thank you for your email.")
+          console.log(`${process.env.MAIL_API}`)
+          fetch(`${process.env.MAIL_API}`, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values),
+          }).then(response => {
+            console.log(response)
+            setSentEmail(true)
             setSubmitting(false)
             resetForm()
-          }, 500)
+          })
         }}
         render={({ isSubmitting, errors, touched }) => (
-          <Form>
-            <FieldSet disabled={isSubmitting}>
-              <Field type="text" name="fullName" placeholder="Your name" />
-              <ErrorMessage name="fullName">
-                {msg => (
-                  <ErrorWrapper>
-                    <span>{msg}</span>
-                  </ErrorWrapper>
-                )}
-              </ErrorMessage>
-            </FieldSet>
-            <FieldSet disabled={isSubmitting}>
-              <Field
-                type="email"
-                name="email"
-                placeholder="Your email address"
-              />
-              <ErrorMessage name="email">
-                {msg => (
-                  <ErrorWrapper>
-                    <span>{msg}</span>
-                  </ErrorWrapper>
-                )}
-              </ErrorMessage>
-            </FieldSet>
-            <FieldSet disabled={isSubmitting}>
-              <Field
-                component="textarea"
-                rows="8"
-                name="message"
-                placeholder="Message"
-              />
-              <ErrorMessage name="message">
-                {msg => (
-                  <ErrorWrapper>
-                    <span>{msg}</span>
-                  </ErrorWrapper>
-                )}
-              </ErrorMessage>
-            </FieldSet>
-            <FormButton type="submit" disabled={isSubmitting}>
-              Send
-            </FormButton>
-          </Form>
+          <>
+            {!sentEmail ? (
+              <Form>
+                <FieldSet disabled={isSubmitting}>
+                  <Field type="text" name="name" placeholder="Your name" />
+                  <ErrorMessage name="name">
+                    {msg => (
+                      <ErrorWrapper>
+                        <span>{msg}</span>
+                      </ErrorWrapper>
+                    )}
+                  </ErrorMessage>
+                </FieldSet>
+                <FieldSet disabled={isSubmitting}>
+                  <Field
+                    type="email"
+                    name="email"
+                    placeholder="Your email address"
+                  />
+                  <ErrorMessage name="email">
+                    {msg => (
+                      <ErrorWrapper>
+                        <span>{msg}</span>
+                      </ErrorWrapper>
+                    )}
+                  </ErrorMessage>
+                </FieldSet>
+                <FieldSet disabled={isSubmitting}>
+                  <Field
+                    component="textarea"
+                    rows="8"
+                    name="message"
+                    placeholder="Message"
+                  />
+                  <ErrorMessage name="message">
+                    {msg => (
+                      <ErrorWrapper>
+                        <span>{msg}</span>
+                      </ErrorWrapper>
+                    )}
+                  </ErrorMessage>
+                </FieldSet>
+                <FormButton type="submit" disabled={isSubmitting}>
+                  Send
+                </FormButton>
+              </Form>
+            ) : (
+              <div>Thank you for your email.</div>
+            )}
+          </>
         )}
       />
     </FadeWrapper>

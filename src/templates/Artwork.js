@@ -1,18 +1,17 @@
-import React from "react"
 import { graphql } from "gatsby"
 import Img from "gatsby-image"
-import ImageZoom from "../components/ImageZoom"
-import { Headline, Meta, Link } from "../components/Styled"
-import styled from "styled-components"
-import { settings } from "../utils/settings"
-import { FadeWrapper } from "../components/Transitions"
-import { PrevArtist, NextArtist } from "../components/NextPrevArtist"
-
 import _ from "lodash"
-import { useColour } from "../utils/colourContext"
-import { PrevArtwork, NextArtwork } from "../components/NextPrevArtwork"
-import { ArrowHeader, Left, Right } from "./Artist"
+import React from "react"
+import styled from "styled-components"
+import ImageZoom from "../components/ImageZoom"
+import { NextArtist, PrevArtist } from "../components/NextPrevArtist"
+import { NextArtwork, PrevArtwork } from "../components/NextPrevArtwork"
 import SEO from "../components/SEO"
+import { Headline, Link, Meta } from "../components/Styled"
+import { FadeWrapper } from "../components/Transitions"
+import { useColour } from "../utils/colourContext"
+import { settings } from "../utils/settings"
+import { ArrowHeader, Left, Right } from "./Artist"
 
 export default ({ data }) => {
   const {
@@ -100,6 +99,7 @@ export default ({ data }) => {
 }
 
 const ArtworkWrapper = styled.section`
+  margin-top: 2em;
   @media (min-width: ${settings.breakpoints.medium}) {
     display: grid;
     grid-template-columns: 1fr 1fr;

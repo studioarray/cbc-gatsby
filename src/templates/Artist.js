@@ -1,17 +1,17 @@
-import React from "react"
-import _ from "lodash"
 import { graphql } from "gatsby"
-import Image from "../components/Image"
-import { Headline, List, Link as TitleLink, Meta } from "../components/Styled"
-import { settings } from "../utils/settings"
+import _ from "lodash"
+import React from "react"
 import styled from "styled-components"
+import Image from "../components/Image"
+import { NextArtist, PrevArtist } from "../components/NextPrevArtist"
+import SEO from "../components/SEO"
+import { Headline, Link as TitleLink, List, Meta } from "../components/Styled"
 import { FadeWrapper, Link } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
-import { PrevArtist, NextArtist } from "../components/NextPrevArtist"
-import SEO from "../components/SEO"
+import { settings } from "../utils/settings"
 
 export default ({ data }) => {
-  const { firstName, lastName, slug, artworks } = data.artist.getArtist
+  const { firstName, lastName, slug, artworks, bio } = data.artist.getArtist
   const sortedArtworks = _.reverse(
     _.sortBy(artworks.items, ["sortYear", "catalogueNumber"])
   )
@@ -32,6 +32,7 @@ export default ({ data }) => {
           <NextArtist slug={slug} />
         </Right>
       </ArrowHeader>
+      <Bio>{bio}</Bio>
       <CollectionList>
         {sortedArtworks.map(({ title, date, id, images, slug }) => (
           <CollectionListItem key={id}>
@@ -68,7 +69,15 @@ export const ArrowHeader = styled.div`
     @media (min-width: ${settings.breakpoints.medium}) {
       flex: inherit;
     }
+    margin-top: 0;
+    margin-bottom: 0;
   }
+`
+export const Bio = styled.div`
+  text-align: center;
+  margin-top: 0.8em;
+  margin-bottom: 2em;
+  font-size: 12px;
 `
 export const Right = styled.div`
   flex: inherit;
@@ -136,8 +145,6 @@ export const query = graphql`
       getArtist(id: $id) {
         lastName
         firstName
-        birthYear
-        deathYear
         bio
         slug
         visibility
