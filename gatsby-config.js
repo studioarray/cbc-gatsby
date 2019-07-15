@@ -1,9 +1,6 @@
 require("dotenv").config({
   path: `.env`,
 })
-console.log(
-  `TEST @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@ ${process.env.CBC_S3_BUCKET_NAME}`
-)
 
 module.exports = {
   siteMetadata: {
@@ -51,6 +48,7 @@ module.exports = {
       options: {
         bucketName: `${process.env.CBC_S3_BUCKET_NAME}`,
         protocol: "https",
+        region: "eu-west-1",
         accessKeyId: `${process.env.CBC_IAM_ACCESS_KEY_ID}`,
         secretAccessKey: `${process.env.CBC_IAM_SECRET_ACCESS_KEY}`,
       },
