@@ -25,9 +25,9 @@ module.exports = {
         // This is the field under which it's accessible
         fieldName: "cbc",
         // URL to query from
-        url: `${process.env.CBC_AWS_APPSYNC_API_URL}`,
+        url: `${process.env.CBC_APPSYNC_API_URL}`,
         headers: {
-          "x-api-key": `${process.env.CBC_AWS_APPSYNC_API_KEY}`,
+          "x-api-key": `${process.env.CBC_APPSYNC_API_KEY}`,
         },
         refetchInterval: 10,
       },
@@ -46,7 +46,7 @@ module.exports = {
     {
       resolve: "gatsby-source-s3-image",
       options: {
-        bucketName: `${process.env.CBC_AWS_S3_BUCKET_NAME}`,
+        bucketName: `${process.env.CBC_S3_BUCKET_NAME}`,
         protocol: "https",
         region: "eu-west-1",
         accessKeyId: `${process.env.CBC_IAM_ACCESS_KEY_ID}`,
