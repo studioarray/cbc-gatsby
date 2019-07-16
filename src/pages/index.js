@@ -1,8 +1,8 @@
 import React, { useEffect } from "react"
 import { FeaturedArtwork } from "../components/FeaturedArtwork"
+import SEO from "../components/metaSEO"
 import { FadeWrapper } from "../components/Transitions"
 import { useFrontpage } from "../utils/frontpageContext"
-import SEO from "../components/SEO"
 
 const IndexPage = ({ location }) => {
   const { setFrontpage } = useFrontpage()

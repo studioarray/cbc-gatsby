@@ -1,5 +1,5 @@
 import React from "react"
-import SEO from "../components/SEO"
+import SEO from "../components/metaSEO"
 import { FadeWrapper } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
 

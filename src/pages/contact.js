@@ -7,7 +7,7 @@ import {
 import React from "react"
 import styled, { css } from "styled-components"
 import * as Yup from "yup"
-import SEO from "../components/SEO"
+import SEO from "../components/metaSEO"
 import { Headline } from "../components/Styled"
 import { FadeWrapper } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
@@ -37,7 +37,7 @@ const Contact = () => {
         onSubmit={(values, { setSubmitting, resetForm }) => {
           console.log(JSON.stringify(values, null, 2))
           console.log("Thank you for your email.")
-          fetch(`${process.env.CBC_MAIL_API}`, {
+          fetch(process.env.CBC_MAIL_API, {
             method: "POST",
             mode: "no-cors",
             headers: {

@@ -1,17 +1,17 @@
-import React from "react"
-import _ from "lodash"
-import Image from "../components/Image"
 import { graphql } from "gatsby"
-import { Headline, BoldLink } from "../components/Styled"
+import _ from "lodash"
+import React from "react"
+import Image from "../components/Image"
+import SEO from "../components/metaSEO"
+import { BoldLink, Headline } from "../components/Styled"
+import { FadeWrapper, Link } from "../components/Transitions"
 import {
+  CollectionImage,
   CollectionList,
   CollectionListItem,
   CollectionName,
-  CollectionImage,
 } from "../templates/Artist"
-import { FadeWrapper, Link } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
-import SEO from "../components/SEO"
 
 export default ({ data }) => {
   const artists = _.sortBy(data.cbc.listArtists.items, ["lastName"])

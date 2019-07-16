@@ -1,11 +1,11 @@
-import React from "react"
-import _ from "lodash"
 import { graphql } from "gatsby"
-import { Headline } from "../components/Styled"
+import _ from "lodash"
+import React from "react"
 import ArtistsAlphabetic from "../components/ArtistsAlphabetic"
+import SEO from "../components/metaSEO"
+import { Headline } from "../components/Styled"
 import { FadeWrapper } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
-import SEO from "../components/SEO"
 
 export default ({ data }) => {
   const artists = _.sortBy(data.cbc.listArtists.items, ["lastName"])

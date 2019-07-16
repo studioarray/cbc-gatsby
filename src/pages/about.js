@@ -1,7 +1,7 @@
 import { graphql } from "gatsby"
 import React from "react"
 import styled from "styled-components"
-import SEO from "../components/SEO"
+import SEO from "../components/metaSEO"
 import { Headline } from "../components/Styled"
 import { FadeWrapper } from "../components/Transitions"
 import { useColour } from "../utils/colourContext"
