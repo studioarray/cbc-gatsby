@@ -2,6 +2,13 @@ require("dotenv").config({
   path: `.env`,
 })
 
+const AWS = require("aws-sdk")
+
+AWS.config.update({
+  accessKeyId: process.env.CBC_IAM_ACCESS_KEY_ID,
+  secretAccessKey: process.env.CBC_IAM_SECRET_ACCESS_KEY,
+})
+
 module.exports = {
   siteMetadata: {
     title: `Christian Bjelland Collection`,
@@ -49,8 +56,6 @@ module.exports = {
         bucketName: process.env.CBC_S3_BUCKET_NAME,
         protocol: "https",
         region: "eu-west-1",
-        accessKeyId: process.env.CBC_IAM_ACCESS_KEY_ID,
-        secretAccessKey: process.env.CBC_IAM_SECRET_ACCESS_KEY,
       },
     },
     {

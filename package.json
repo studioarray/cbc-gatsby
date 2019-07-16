@@ -6,6 +6,7 @@
   "author": "Kyle Mathews <mathews.kyle@gmail.com>",
   "dependencies": {
     "@rehooks/component-size": "^1.0.2",
+    "aws-sdk": "^2.493.0",
     "babel-plugin-styled-components": "^1.10.0",
     "formik": "^1.5.4",
     "gatsby": "^2.4.3",
