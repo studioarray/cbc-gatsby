@@ -1,12 +1,12 @@
 import React from "react"
-import Menu from "./Menu"
-import Logo from "./Logo"
-import LogoWordMark from "./LogoWordMark"
-import FeaturedArtworkMeta from "./FeaturedArtworkMeta"
-import { Copyright } from "./Copyright"
 import styled from "styled-components"
 import { useFeatured } from "../utils/featuredContext"
 import { settings } from "../utils/settings"
+import { Copyright } from "./Copyright"
+import FeaturedArtworkMeta from "./FeaturedArtworkMeta"
+import Logo from "./Logo"
+import LogoWordMark from "./LogoWordMark"
+import Menu from "./Menu"
 
 export default props => {
   const { featured } = useFeatured()
