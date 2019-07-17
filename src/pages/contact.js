@@ -99,7 +99,7 @@ const Contact = () => {
                 </FormButton>
               </Form>
             ) : (
-              <div>Thank you for your email.</div>
+              <Thanks>Thank you for your email.</Thanks>
             )}
           </>
         )}
@@ -107,6 +107,11 @@ const Contact = () => {
     </FadeWrapper>
   )
 }
+
+const Thanks = styled.div`
+  width: 100%;
+  text-align: center;
+`
 
 const Field = styled(FormikField)`
   font-family: inherit;
