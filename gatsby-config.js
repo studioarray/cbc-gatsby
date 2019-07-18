@@ -12,8 +12,11 @@ AWS.config.update({
 module.exports = {
   siteMetadata: {
     title: `Christian Bjelland Collection`,
+    titleTemplate: "%s | Christian Bjelland Collection",
+    url: "https://www.bjellandcollection.com",
     description: `The private art collection of Christian Bjelland.`,
     author: `Christian Bjelland`,
+    image: "/images/meta.jpg",
   },
   plugins: [
     {
