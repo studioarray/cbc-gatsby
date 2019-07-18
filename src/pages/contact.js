@@ -39,7 +39,6 @@ const Contact = () => {
             method: "POST",
             mode: "cors",
             cache: "no-cache",
-            credentials: "include",
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
