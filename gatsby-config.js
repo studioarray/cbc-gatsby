@@ -16,7 +16,7 @@ module.exports = {
     url: "https://www.bjellandcollection.com",
     description: `The private art collection of Christian Bjelland.`,
     author: `Christian Bjelland`,
-    image: "/images/meta.jpg",
+    image: "/meta.jpg",
   },
   plugins: [
     {
