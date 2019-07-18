@@ -11,7 +11,7 @@ AWS.config.update({
 
 module.exports = {
   siteMetadata: {
-    title: `Christian Bjelland Collection`,
+    title: "Christian Bjelland Collection",
     titleTemplate: "%s | Christian Bjelland Collection",
     url: "https://www.bjellandcollection.com",
     description: `The private art collection of Christian Bjelland.`,
@@ -46,6 +46,18 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-react-svg`,
+    {
+      resolve: `gatsby-plugin-manifest`,
+      options: {
+        name: `Christian Bjelland Collection`,
+        short_name: `CBC`,
+        start_url: `/`,
+        background_color: `#fff`,
+        theme_color: `#fff`,
+        display: `standalone`,
+        icon: `src/images/icon.png`,
+      },
+    },
     `gatsby-plugin-sass`,
     {
       resolve: "gatsby-plugin-styled-components",
