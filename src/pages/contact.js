@@ -35,9 +35,7 @@ const Contact = () => {
           message: Yup.string().required("The message field can not be empty."),
         })}
         onSubmit={(values, { setSubmitting, resetForm }) => {
-          console.log(JSON.stringify(values, null, 2))
-          console.log("Thank you for your email.")
-          fetch(`${process.env.CBC_MAIL_API}`, {
+          fetch(`${process.env.GATSBY_CBC_MAIL_API}`, {
             method: "POST",
             mode: "no-cors",
             headers: {
@@ -46,9 +44,11 @@ const Contact = () => {
             body: JSON.stringify(values),
           }).then(response => {
             console.log(response)
-            setSentEmail(true)
-            setSubmitting(false)
-            resetForm()
+            if (response.status === 200) {
+              setSentEmail(true)
+              setSubmitting(false)
+              resetForm()
+            }
           })
         }}
         render={({ isSubmitting, errors, touched }) => (
