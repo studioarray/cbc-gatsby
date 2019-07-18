@@ -37,7 +37,9 @@ const Contact = () => {
         onSubmit={(values, { setSubmitting, resetForm }) => {
           fetch(`${process.env.GATSBY_CBC_MAIL_API}`, {
             method: "POST",
-            mode: "no-cors",
+            mode: "cors",
+            cache: "no-cache",
+            credentials: "include",
             headers: {
               Accept: "application/json",
               "Content-Type": "application/json",
