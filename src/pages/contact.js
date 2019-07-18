@@ -39,16 +39,15 @@ const Contact = () => {
             method: "POST",
             mode: "no-cors",
             headers: {
+              Accept: "application/json",
               "Content-Type": "application/json",
             },
             body: JSON.stringify(values),
           }).then(response => {
             console.log(response)
-            if (response.status === 200) {
-              setSentEmail(true)
-              setSubmitting(false)
-              resetForm()
-            }
+            setSentEmail(true)
+            setSubmitting(false)
+            resetForm()
           })
         }}
         render={({ isSubmitting, errors, touched }) => (
