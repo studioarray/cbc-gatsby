@@ -9,7 +9,7 @@ AWS.config.update({
   secretAccessKey: process.env.CBC_IAM_SECRET_ACCESS_KEY,
 })
 
-module.exports = {
+const gatsbyConfig = {
   siteMetadata: {
     title: "Christian Bjelland Collection",
     titleTemplate: "%s | Christian Bjelland Collection",
@@ -81,3 +81,15 @@ module.exports = {
     },
   ],
 }
+
+if (process.env.NODE_ENV === "production") {
+  const googleAnalyticsCfg = {
+    resolve: "gatsby-plugin-google-analytics",
+    options: {
+      trackingId: "UA-145086804-1",
+    },
+  }
+  gatsbyConfig.plugins.push(googleAnalyticsCfg)
+}
+
+module.exports = gatsbyConfig
