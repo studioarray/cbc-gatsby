@@ -1,6 +1,6 @@
-import React from "react"
-import styled from "styled-components"
-import { PropTypes } from "prop-types"
+import { PropTypes } from "prop-types";
+import React from "react";
+import styled from "styled-components";
 
 const paddingY = 0,
   paddingX = 0,
@@ -123,7 +123,7 @@ const HamburgerInner = styled.span`
 `
 
 const Hamburger = ({ active, setActive }) => (
-  <HamburgerButton active={active} onClick={() => setActive(!active)}>
+  <HamburgerButton active={active} aria-label="Menu" onClick={() => setActive(!active)}>
     <HamburgerBox active={active}>
       <HamburgerInner active={active} />
     </HamburgerBox>
