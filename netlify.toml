@@ -1,0 +1,6 @@
+# COMMENT: This is a redirect from /admin to the cms hosted on AWS Amplify
+[[redirects]]
+  from = "/admin"
+  to = "https://master.dh10ndjn8os45.amplifyapp.com"
+  status = 301
+  force = true
