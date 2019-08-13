@@ -148,7 +148,7 @@ const ArtworkMeta = styled.div`
 `
 
 export const query = graphql`
-  query($id: ID!, $regexCatalogueNumber: String!) {
+  query($id: ID!, $regex: String!) {
     artwork: cbc {
       getArtwork(id: $id) {
         catalogueNumber
@@ -177,8 +177,8 @@ export const query = graphql`
       }
     }
     images: allFile(
-      filter: { name: { regex: $regexCatalogueNumber } }
-      sort: { fields: name }
+      filter: { base: { regex: $regex } }
+      sort: { fields: base }
     ) {
       edges {
         node {

@@ -19,7 +19,13 @@ exports.createPages = async ({ actions, graphql }) => {
           items {
             slug
             id
-            catalogueNumber
+            images {
+              items {
+                file {
+                  key
+                }
+              }
+            }
           }
         }
       }
@@ -36,15 +42,36 @@ exports.createPages = async ({ actions, graphql }) => {
     })
   })
 
-  data.artwork.listArtworks.items.forEach(({ slug, id, catalogueNumber }) => {
-    const regexCatalogueNumber = `/cbs${catalogueNumber}/i`
+  data.artwork.listArtworks.items.forEach(({ slug, id, images }) => {
+    const imageBaseArray = getImageBases(images.items)
+    const imagesString = makeImagesString(imageBaseArray)
+    const regex = `/${imagesString}/i`
     actions.createPage({
       path: `/artworks/${slug}`,
       component: path.resolve(`./src/templates/Artwork.js`),
       context: {
         id,
-        regexCatalogueNumber,
+        regex,
       },
     })
+  })
+}
+
+function getImageBases(imageArray) {
+  // Returns all the images base names from each S3 file key
+  return imageArray.map(
+    image => image.file.key.split("public/uploads/artwork/")[1]
+  )
+}
+
+function makeImagesString(imageBaseArray) {
+  // Need to pass something that's not an empty string to regex..
+  if (imageBaseArray.length === 0) return "no-images-found"
+  // Returns piped string for regex
+  return imageBaseArray.reduce((acc, val) => {
+    if (imageBaseArray.length > 1) {
+      return acc + `|${val}`
+    }
+    return acc
   })
 }
