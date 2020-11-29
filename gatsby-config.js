@@ -68,6 +68,8 @@ const gatsbyConfig = {
     {
       resolve: "gatsby-source-s3-image",
       options: {
+        accessKeyId: process.env.CBC_IAM_ACCESS_KEY_ID,
+        secretAccessKey: process.env.CBC_IAM_SECRET_ACCESS_KEY,
         bucketName: process.env.CBC_S3_BUCKET_NAME,
         protocol: "https",
         region: "eu-west-1",
